@@ -7,6 +7,7 @@ public class ExponentialRandomStream {
 
     private Random rand;
     private double lambda;
+    
 
     public ExponentialRandomStream(double lambda, long seed) {
         rand = new Random(seed);
