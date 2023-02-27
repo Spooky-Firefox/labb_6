@@ -1,6 +1,8 @@
 package Simulator;
 
-public class State
+import java.util.Observable;
+
+public class State extends Observable
 {
 	private boolean stopSimulation;
 	private int currentTime;
