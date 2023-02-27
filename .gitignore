@@ -14,10 +14,7 @@ target/
 
 ### Eclipse ###
 .apt_generated
-.classpath
 .factorypath
-.project
-.settings
 .springBeans
 .sts4-cache
 
@@ -36,3 +33,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/bin/
