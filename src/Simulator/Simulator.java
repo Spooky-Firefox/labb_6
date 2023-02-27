@@ -1,18 +1,16 @@
 package Simulator;
 
-public class Simulator 
-{
+public class Simulator {
 	private State state;
-	private EventQueue events[];
+	private EventQueue events;
 	
-	public Simulator(State state, EventQueue[] events) //Är detta fel?
-	{
+	public Simulator(State state, EventQueue events) {
 		this.state = state;
 		this.events = events;
 	}
-	
-	public void runLoop()
-	{
+
+	public void RunLoop() {
+		
 		
 	}
 }
