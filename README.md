@@ -5,7 +5,7 @@ En butiks simulator + optimizer.
 
 ## UML
 
-TODO: png fil på godkänt diagram.
+![uml diagram](docs/uml.drawio.svg)
 
 ## Bra att ha länkar
 
