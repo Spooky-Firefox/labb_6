@@ -43,7 +43,7 @@ public class UnitTests{
 
 		// StopSim test
 		StopSim evStop = new StopSim(STOPTIME, evq);
-		evq.addEvent(evStart);
+		evq.addEvent(evStop);
 		assert evq.hasNext() == true;
 		ev = evq.nextEvent();
 		assert evq.hasNext() == false;
