@@ -12,7 +12,9 @@ public class Simulator {
 
 	public void RunLoop() {
 		while(state.isStopped() == false) {
-			events.nextEvent().execute(state);
+			Event CurrentEvent = events.nextEvent();
+			state.setTime(CurrentEvent.getStartTime());
+			CurrentEvent.execute(state);
 			if (!events.hasNext()) {
 				System.out.println("event was null");
 				state.stop();
