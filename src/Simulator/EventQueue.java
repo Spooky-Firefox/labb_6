@@ -10,10 +10,10 @@ public class EventQueue {
 	}
 
 	public Event nextEvent() {
-		return null;
+		return list.get(0);
 	}
 
 	public boolean hasNext() {
-		return false;
+		return list.isEmpty();
 	}
 }
