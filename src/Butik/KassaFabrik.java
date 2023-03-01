@@ -1,6 +1,5 @@
 package Butik;
 
-public class KassaFabrik 
-{
+public class KassaFabrik {
 
 }

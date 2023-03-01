@@ -8,6 +8,6 @@ public abstract class ButikEvent extends Event {
 	public int kundNummer;
 
 	public ButikEvent(int time, EventQueue eventQueue) {
-	    super(time, eventQueue);
-    }
+		super(time, eventQueue);
+	}
 }

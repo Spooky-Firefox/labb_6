@@ -15,6 +15,5 @@ public class RunSim {
 		Stängning stängning = new Stängning(10, eventQueue);
 
 		Simulator sim = new Simulator(butikState, eventQueue);
-
 	}
 }

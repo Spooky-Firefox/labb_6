@@ -1,23 +1,16 @@
 package Butik;
 
-public class KassaQueue 
-{
+public class KassaQueue {
 	private int[] kunder;
-	
-	public void addKund(int kundNummer) // tror jag
-	{
-		
+
+	public void addKund(int kundNummer) {
 	}
-	
-	public int nextKund() 
-	{
-		
+
+	public int nextKund() {
 		return 0;
 	}
-	
-	public boolean hasNext()
-	{
-		
+
+	public boolean hasNext() {
 		return false;
 	}
 }

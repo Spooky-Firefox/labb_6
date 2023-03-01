@@ -7,7 +7,7 @@ public abstract class Event{
 	public Event(int time, EventQueue eventQueue) {
 		this.queue = eventQueue;
 		this.startTime = time;
-        eventQueue.addEvent(this);
+		eventQueue.addEvent(this);
 	}
 
 	public abstract void execute(State state);

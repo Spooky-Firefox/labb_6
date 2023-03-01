@@ -14,6 +14,6 @@ public class ButikView extends View
 	@Override
 	public void update(Observable observable, Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
