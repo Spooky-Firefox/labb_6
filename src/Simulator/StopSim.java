@@ -7,5 +7,6 @@ public class StopSim extends Event {
 
 	@Override
 	public void execute(State state) {
+		state.stop();
 	}
 }

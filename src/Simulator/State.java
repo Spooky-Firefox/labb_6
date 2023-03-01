@@ -7,13 +7,14 @@ public class State extends Observable {
 	private int currentTime;
 
 	public void stop() {
+		this.stopSimulation = true;
 	}
 
 	public boolean isStopped() {
-		return false;
+		return this.stopSimulation;
 	}
 
 	public int getTime() {
-		return 0;
+		return this.currentTime;
 	}
 }
