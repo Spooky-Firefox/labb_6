@@ -31,7 +31,7 @@ public class EventQueue {
         return list.remove(0);
     }
 
-    public boolean hasNext() {
-        return list.isEmpty();
-    }
+	public boolean hasNext() {
+		return !list.isEmpty();
+	}
 }
