@@ -17,9 +17,17 @@ public class UnitTests{
 			super(st);
 		}
 		public void update(Observable obs, Object obj) {
+			// TODO: some way to check that event (in obj) matches wanted event
 			updates++;
-			System.out.println("OBS: " + obs + "\tOBJ: " + obj);
 		}
+	}
+
+	private static void runEvent(State st, Event ev) {
+		// Stolen from Simulator.runLoop()
+		st.notify(ev);
+		st.setTime(ev.getStartTime());
+		ev.execute(st);
+		assert st.getTime() == ev.getStartTime();
 	}
 
 	public static void main(String[] args){
@@ -63,13 +71,11 @@ public class UnitTests{
 		st = new State(); // Resets the state
 		TestView tv = new TestView(st);
 		assert tv.updates == 0;
-		evStart.execute(st);
+		runEvent(st, evStart);
 		assert st.isStopped() == false;
-		assert st.getTime() == STARTTIME;
 		assert tv.updates == 1;
-		evStop.execute(st);
+		runEvent(st, evStop);
 		assert st.isStopped() == true;
-		assert st.getTime() == STOPTIME;
 		assert tv.updates == 2;
 
 		// ButikState butikState = new ButikState();
