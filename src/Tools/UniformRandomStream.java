@@ -1,5 +1,5 @@
 
-package tools;
+package Tools;
 
 import java.util.Random;
 
