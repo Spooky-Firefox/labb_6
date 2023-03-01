@@ -31,8 +31,8 @@ public class UnitTests{
 		assert evq.hasNext() == false;
 
 		// StartSim test
-		// Event constructor will add the events to the queue automagically
 		StartSim evStart = new StartSim(STARTTIME, evq);
+		evq.addEvent(evStart);
 		assert evq.hasNext() == true;
 		Event ev = evq.nextEvent();
 		assert evq.hasNext() == false;
@@ -43,6 +43,7 @@ public class UnitTests{
 
 		// StopSim test
 		StopSim evStop = new StopSim(STOPTIME, evq);
+		evq.addEvent(evStop);
 		assert evq.hasNext() == true;
 		ev = evq.nextEvent();
 		assert evq.hasNext() == false;

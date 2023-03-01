@@ -2,18 +2,18 @@ package Shop;
 
 import java.util.ArrayList;
 
-public class KassaQueue {
+public class CheckoutQueue {
     private ArrayList<Integer> customers;
 
-    public KassaQueue() {
+    public CheckoutQueue() {
         customers = new ArrayList<>();
     }
 
-    public void addKund(int customersNumber) {
+    public void addCustomer(int customersNumber) {
         this.customers.add(customersNumber);
     }
 
-    public int nextKund() {
+    public int nextCustomer() {
         return this.customers.remove(0);
     }
 

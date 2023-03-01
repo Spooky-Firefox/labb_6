@@ -28,7 +28,12 @@ public class EventQueue {
     }
 
     public Event nextEvent() {
-        return list.remove(0);
+    	if (hasNext()) {
+    		return list.remove(0);
+    	}
+    	else {
+    		return null;
+    	}
     }
 
 	public boolean hasNext() {
