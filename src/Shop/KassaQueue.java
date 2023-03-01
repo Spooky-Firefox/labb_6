@@ -1,16 +1,28 @@
 package Shop;
 
+import java.util.ArrayList;
+
 public class KassaQueue {
-	private int[] customers;
+    private ArrayList<Integer> customers;
 
-	public void addKund(int customersNumber) {
-	}
+    public KassaQueue() {
+        customers = new ArrayList<>();
+    }
 
-	public int nextKund() {
-		return 0;
-	}
+    public void addKund(int customersNumber) {
+        this.customers.add(customersNumber);
+    }
 
-	public boolean hasNext() {
-		return false;
-	}
+    public int nextKund() {
+        return this.customers.remove(0);
+    }
+
+    public boolean hasNext() {
+        return !this.customers.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return this.customers.toString();
+    }
 }
