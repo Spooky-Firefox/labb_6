@@ -10,4 +10,12 @@ public abstract class ShopEvent extends Event {
 	public ShopEvent(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
+
+	@Override
+	final public void execute(State state) {
+		((ShopState) state).updateStatistics();
+		this.execute((ShopState) state);
+	}
+
+	abstract void execute(ShopState state);
 }
