@@ -14,6 +14,7 @@ public class Simulator {
 		while(state.isStopped() == false) {
 			events.nextEvent().execute(state);
 			if (!events.hasNext()) {
+				System.out.println("event was null");
 				state.stop();
 			}
 		}
