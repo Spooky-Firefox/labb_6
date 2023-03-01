@@ -26,8 +26,15 @@ public class UnitTests{
 		System.out.println("Running unit tests...");
 		// Have to test the Simulator pkg first (since Shop pkg depends on it).
 
+		// State test
+		State st = new State();
+		assert st.isStopped() == false;
+		st.stop();
+		assert st.isStopped() == true;
+		assert st.getTime() == 0;
+
 		// EventQueue test
-		EventQueue evq = new EventQueue();
+		EventQueue evq = new EventQueue(st);
 		assert evq.hasNext() == false;
 
 		// StartSim test
@@ -51,13 +58,6 @@ public class UnitTests{
 		assert ev.getClass().equals(evStop.getClass());
 		StopSim evStopTest = (StopSim) ev;
 		assert evStopTest.equals(evStop);
-
-		// State test
-		State st = new State();
-		assert st.isStopped() == false;
-		st.stop();
-		assert st.isStopped() == true;
-		assert st.getTime() == 0;
 
 		// View test
 		st = new State(); // Resets the state

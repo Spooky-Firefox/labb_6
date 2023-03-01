@@ -9,7 +9,7 @@ public class RunSim {
 		ButikView shopView = new ButikView(shopState);
 		shopState.open = true;
 
-		EventQueue eventQueue = new EventQueue();
+		EventQueue eventQueue = new EventQueue(shopState);
 		StartSim startSim = new StartSim(0, eventQueue);
 		StopSim stopSim = new StopSim(999, eventQueue);
 		Closing closing = new Closing(10, eventQueue);
