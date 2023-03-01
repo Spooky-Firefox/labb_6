@@ -24,6 +24,6 @@ public class EventQueue {
 	}
 
 	public boolean hasNext() {
-		return list.isEmpty();
+		return !list.isEmpty();
 	}
 }
