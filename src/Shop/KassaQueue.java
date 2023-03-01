@@ -1,9 +1,9 @@
-package Butik;
+package Shop;
 
 public class KassaQueue {
-	private int[] kunder;
+	private int[] customers;
 
-	public void addKund(int kundNummer) {
+	public void addKund(int customersNumber) {
 	}
 
 	public int nextKund() {

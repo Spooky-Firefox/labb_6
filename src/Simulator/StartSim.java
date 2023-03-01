@@ -1,7 +1,7 @@
 package Simulator;
 
 public class StartSim extends Event {
-	//behÃ¶ver fixa att tiden Ã¤r med i state
+	//behöver fixa att tiden är med i state
 	//execute(state);
 
 	public StartSim(int time, EventQueue eventQueue) {

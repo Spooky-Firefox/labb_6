@@ -1,17 +1,18 @@
 package Main;
 
 import java.util.Observable;
+
+import Shop.*;
 import Simulator.*;
-import Butik.*;
 
 public class UnitTests{
 
 	private static int STARTTIME = 0;
 	private static int STOPTIME = 999;
 
-	// Måste vara en static class, annars får man error i main() (som är static).
+	// M�ste vara en static class, annars f�r man error i main() (som är static).
 	private static class TestView extends View {
-		public int updates = 0; // Räknar antalet gånger som update() har körts
+		public int updates = 0; // R�knar antalet g�nger som update() har k�rts
 		public TestView(State st) {
 			super(st);
 		}
@@ -72,8 +73,8 @@ public class UnitTests{
 
 		// ButikState butikState = new ButikState();
 		// ButikView butikView = new ButikView(butikState);
-		// butikState.öppen = true;
-		// Stängning stängning = new Stängning(10, eventQueue);
+		// butikState.open = true;
+		// Closing closing = new Closing(10, eventQueue);
 		// Simulator sim = new Simulator(butikState, eventQueue);
 
 		System.out.println("Tests OK");

@@ -1,10 +1,10 @@
-package Butik;
+package Shop;
 
 import Simulator.EventQueue;
 import Simulator.State;
 
-public class Plocka extends ButikEvent {
-	public Plocka(int time, EventQueue eventQueue) {
+public class Closing extends ShopEvent {
+	public Closing(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 

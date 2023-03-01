@@ -1,4 +1,4 @@
-package Butik;
+package Shop;
 
 import java.util.Observable;
 

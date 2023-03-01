@@ -1,10 +1,10 @@
-package Butik;
+package Shop;
 
 import Simulator.EventQueue;
 import Simulator.State;
 
-public class Ankomst extends ButikEvent {
-	public Ankomst(int time, EventQueue eventQueue) {
+public class Payment extends ShopEvent {
+	public Payment(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
