@@ -8,7 +8,11 @@ public class EventQueue {
 	public void addEvent(Event event) {
 	}
 
-	private boolean hasNext() {
+	public Event nextEvent() {
+		return null;
+	}
+
+	public boolean hasNext() {
 		return false;
 	}
 }

@@ -6,7 +6,7 @@ public class State extends Observable {
 	private boolean stopSimulation;
 	private int currentTime;
 
-	public void Stop() {
+	public void stop() {
 	}
 
 	public boolean isStopped() {
