@@ -7,10 +7,15 @@ public abstract class Event {
     public Event(int time, EventQueue eventQueue) {
         this.queue = eventQueue;
         this.startTime = time;
-        eventQueue.addEvent(this);
     }
+    
     public int getStartTime(){
         return startTime;
     }
+    
+    public EventQueue getQueue() {
+    	return queue;
+    }
+    
     public abstract void execute(State state);
 }
