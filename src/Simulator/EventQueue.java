@@ -3,11 +3,17 @@ package Simulator;
 import java.util.ArrayList;
 
 public class EventQueue {
-    ArrayList<Event> list = new ArrayList<>();
-
+    ArrayList<Event> list;
+    State state;
+    public EventQueue(State state){
+        this.state = state;
+        this.list = new ArrayList<>();
+    }
     public void addEvent(Event event) {
-        // TODO throw error if the time is in the past
-
+        // throw error if the time is in the past
+        if (event.getStartTime() < this.state.getTime()){
+            throw new IllegalArgumentException("Can't add a event that happens in the past");
+        }
         // if the que is empty add the event
         if (list.size() == 0) {
             list.add(event);
