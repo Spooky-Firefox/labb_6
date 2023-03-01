@@ -1,12 +1,12 @@
 package Shop;
 
-public class KassaQueue {
+public class CheckoutQueue {
 	private int[] customers;
 
-	public void addKund(int customersNumber) {
+	public void addCustomer(int customersNumber) {
 	}
 
-	public int nextKund() {
+	public int nextCustomer() {
 		return 0;
 	}
 
