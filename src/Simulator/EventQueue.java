@@ -3,10 +3,10 @@ package Simulator;
 import java.util.ArrayList;
 
 public class EventQueue {
-	ArrayList<Integer> list = new ArrayList<>();
+	ArrayList<Event> list = new ArrayList<>();
 
 	public void addEvent(Event event) {
-		list.append(event);
+		list.add(event);
 	}
 
 	public Event nextEvent() {
