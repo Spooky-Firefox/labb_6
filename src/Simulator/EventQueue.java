@@ -10,7 +10,7 @@ public class EventQueue {
 	}
 
 	public Event nextEvent() {
-		return list.get(0);
+		return list.remove(0);
 	}
 
 	public boolean hasNext() {
