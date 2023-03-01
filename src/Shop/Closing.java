@@ -1,7 +1,6 @@
 package Shop;
 
 import Simulator.EventQueue;
-import Simulator.State;
 
 public class Closing extends ShopEvent {
 	public Closing(int time, EventQueue eventQueue) {
@@ -9,6 +8,7 @@ public class Closing extends ShopEvent {
 	}
 
 	@Override
-	public void execute(State state) {
+	public void execute(ShopState state) {
+		state.open = false;
 	}
 }
