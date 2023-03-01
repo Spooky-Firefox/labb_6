@@ -13,6 +13,9 @@ public class Simulator {
 	public void RunLoop() {
 		while(state.isStopped() == false) {
 			events.nextEvent().execute(state);
+			if (!events.hasNext()) {
+				state.stop();
+			}
 		}
 	}
 }
