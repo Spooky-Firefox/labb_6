@@ -9,6 +9,6 @@ public class Pick extends ShopEvent {
 	}
 
 	@Override
-	public void execute(State state) {
+	public void execute(ShopState state) {
 	}
 }
