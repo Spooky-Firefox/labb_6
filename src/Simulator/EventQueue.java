@@ -6,6 +6,7 @@ public class EventQueue {
 	ArrayList<Integer> list = new ArrayList<>();
 
 	public void addEvent(Event event) {
+		list.append(event);
 	}
 
 	public Event nextEvent() {
