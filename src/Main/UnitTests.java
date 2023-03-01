@@ -10,9 +10,9 @@ public class UnitTests{
 	private static int STARTTIME = 0;
 	private static int STOPTIME = 999;
 
-	// M�ste vara en static class, annars f�r man error i main() (som är static).
+	// Must be a static class or there's going to be an error in main().
 	private static class TestView extends View {
-		public int updates = 0; // R�knar antalet g�nger som update() har k�rts
+		public int updates = 0; // Count number of times that update() was run
 		public TestView(State st) {
 			super(st);
 		}
@@ -24,14 +24,14 @@ public class UnitTests{
 
 	public static void main(String[] args){
 		System.out.println("Running unit tests...");
-		// Börjar först med att testa simulator pkg (då butik pkg är beroende av simulator)
+		// Have to test the Simulator pkg first (since Shop pkg depends on it).
 
 		// EventQueue test
 		EventQueue evq = new EventQueue();
 		assert evq.hasNext() == false;
 
 		// StartSim test
-		// Konstruktor bör lägga till event i eventqueue automatiskt
+		// Event constructor will add the events to the queue automagically
 		StartSim evStart = new StartSim(STARTTIME, evq);
 		assert evq.hasNext() == true;
 		Event ev = evq.nextEvent();
@@ -59,7 +59,7 @@ public class UnitTests{
 		assert st.getTime() == 0;
 
 		// View test
-		st = new State(); // För att återställa stop
+		st = new State(); // Resets the state
 		TestView tv = new TestView(st);
 		assert tv.updates == 0;
 		evStart.execute(st);
