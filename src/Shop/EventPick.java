@@ -18,7 +18,7 @@ public class EventPick extends ShopEvent {
 		if (state.freeCheckout()) {
 			// TODO: randomize start time
 			EventPayment payment = new EventPayment(
-					super.getStartTime() + 1, super.getQueue()
+				super.getStartTime() + 1, super.getQueue()
 			);
 		}
 		else {

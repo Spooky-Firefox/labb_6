@@ -10,7 +10,7 @@ public class Simulator {
 		this.events = events;
 	}
 
-	public void RunLoop() {
+	public void runLoop() {
 		while(state.isStopped() == false) {
 			Event currentEvent = events.nextEvent();
 			state.notify(currentEvent);
