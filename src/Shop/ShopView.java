@@ -28,7 +28,7 @@ public class ShopView extends View {
 		System.out.println("Fro, f...................: " + state.rngSeed);
 		System.out.println("\nFORLOPP\n=======");
 		// TODO: might need column adjustments...
-		System.out.println("Tid Handelse  Kund  ?  led  ledT  I  $  :-(  koat  koT  koar  [Kassako..]");
+		System.out.println("Tid     Handelse  Kund\t ?  led  ledT  I  $  :-(  koat  koT  koar  [Kassako..]");
 	}
 
 	private void printStop(ShopState state) {
@@ -53,7 +53,7 @@ public class ShopView extends View {
 	private void printEvent(ShopState state, ShopEvent event) {
 		// It's gonna be a big one..
 		System.out.println(event.prettyStartTime() + "  " + event + "   " +
-			event.getCustomer() + "     " + state.prettyOpen() + "  " +
+			event.prettyCustomer() + "\t " + state.prettyOpen() + "  " +
 			state.freeCheckouts() + "   " + state.getTimeEmptyCheckouts() + "   " +
 			state.getShoppingCustomers() + " " + state.getCustomersPayed() + "  " +
 			state.getCustomersMissed() + "    " + state.getCustomersWaited() + "     " +
@@ -67,22 +67,23 @@ public class ShopView extends View {
 		// obs: a ShopState instance
 		// obj: ShopEvent to be executed next
 
-		// TODO: assure obs really is a ShopState???
+		// TODO: assure obs and obj really is ShopState and Event/ShopEvent???
 		ShopState state = (ShopState) obs;
-		String event = obj.getClass().toString();
+		String type = obj.getClass().toString();
+		Event event = (Event) obj;
 
-		switch (event) {
+		switch (type) {
 			case "class Shop.EventStart":
 				printStart(state);
-				System.out.println(((Event) obj).prettyStartTime() + "   Start");
+				System.out.println(event.prettyStartTime() + "  " + event);
 				break;
 			case "class System.StopSim":
-				System.out.println(((Event) obj).prettyStartTime() + "   Stop");
+				System.out.println(event.prettyStartTime() + "  " + event);
 				printStop(state);
 				break;
 			case "class Shop.EventArrival", "class Shop.EventPick",
 				"class Shop.EventPayment", "class Shop.EventClosing":
-				printEvent(state, (ShopEvent) obj);
+				printEvent(state, (ShopEvent) event);
 				break;
 			default:
 				System.out.println("Unhandled event: " + obj.getClass());
