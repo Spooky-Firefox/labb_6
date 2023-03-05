@@ -16,10 +16,12 @@ public class Pick extends ShopEvent {
 	@Override
 	public void execute(ShopState state) {
 		if (state.freeCheckout()) {
+			// TODO: randomize start time
 			Payment payment = new Payment(super.getStartTime() + 1, super.getQueue());
 		}
 		else {
-			state.queue.addCustomer(this.customerNumber);
+			// TODO
+			// state.queue.addCustomer(this.customerNumber);
 		}
 	}
 }

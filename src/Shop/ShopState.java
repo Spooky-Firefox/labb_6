@@ -14,4 +14,9 @@ public class ShopState extends State
 		// a example of calculating the sum queue time
 		// queueTime = queueTime + checkoutQueue.size()*deltaTime
 	}
+
+	public boolean freeCheckout() {
+		// TODO: check for a free checkout
+		return false;
+	}
 }
