@@ -8,6 +8,11 @@ public class EventArrival extends ShopEvent {
 		super(time, eventQueue);
 	}
 
+	public EventArrival(int startTime, EventQueue eventQueue, int customer) {
+		this(startTime, eventQueue);
+		this.setCustomer(customer);
+	}
+
 	@Override
 	public void execute(ShopState state) {
 	}

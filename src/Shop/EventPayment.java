@@ -8,6 +8,11 @@ public class EventPayment extends ShopEvent {
 		super(time, eventQueue);
 	}
 
+	public EventPayment(int startTime, EventQueue eventQueue, int customer) {
+		this(startTime, eventQueue);
+		this.setCustomer(customer);
+	}
+
 	@Override
 	public void execute(ShopState state) {
 	}
