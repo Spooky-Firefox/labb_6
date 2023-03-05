@@ -1,6 +1,7 @@
 package System;
 
 public abstract class Event {
+	// TODO: use double instead
     private int startTime;
     private EventQueue queue;
 
@@ -12,6 +13,11 @@ public abstract class Event {
     public int getStartTime(){
         return startTime;
     }
+
+    public String prettyStartTime() {
+		// TODO: pretty printed time (for use in View)
+		return "-1";
+	}
 
     public EventQueue getQueue() {
     	return queue;

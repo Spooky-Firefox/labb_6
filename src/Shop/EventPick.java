@@ -19,7 +19,7 @@ public class EventPick extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		if (state.freeCheckout()) {
+		if (state.hasFreeCheckout()) {
 			// TODO: randomize start time
 			EventPayment payment = new EventPayment(
 				super.getStartTime() + 1, super.getQueue()

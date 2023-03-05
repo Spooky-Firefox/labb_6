@@ -33,11 +33,12 @@ public class ShopView extends View {
 	private void printStop(ShopState state) {
 		System.out.println("\nRESULTAT\n========\n");
 		System.out.println("1) Av " + state.maxCustomers + " kunder handlade " +
-			state.customersPayed + " medan " +
-			state.customersMissed + " missades.\n");
+			state.getCustomersPayed() + " medan " +
+			state.getCustomersMissed() + " missades.\n");
 
 		System.out.println("2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
-			state.timeEmptyCheckouts + " te."); // Yeah no, no idea what kind of unit te is
+			state.getTimeEmptyCheckouts() + " te.");
+		// Yeah no, no idea what kind of unit te is..
 
 		// TODO: STAT VARS for these last lines!
 		System.out.println("   Genomsnittlig ledig kassatid: " + 0 +
@@ -50,7 +51,14 @@ public class ShopView extends View {
 
 	private void printEvent(ShopState state, ShopEvent event) {
 		// It's gonna be a big one..
-		System.out.println(event.getStartTime() + "   " + event);
+		System.out.println(event.prettyStartTime() + "  " + event + "   " +
+			event.getCustomer() + "     " + state.prettyOpen() + "  " +
+			state.freeCheckouts() + "   " + state.getTimeEmptyCheckouts() + "   " +
+			state.getShoppingCustomers() + " " + state.getCustomersPayed() + "  " +
+			state.getCustomersMissed() + "    " + state.getCustomersWaited() + "     " +
+			state.getTimeWaitingCustomers() + "  " + state.getCheckoutLength() + "     " +
+			state.prettyCheckout()
+		);
 	}
 
 	@Override
@@ -65,10 +73,10 @@ public class ShopView extends View {
 		switch (event) {
 			case "class Shop.EventStart":
 				printStart(state);
-				System.out.println(((Event) obj).getStartTime() + "   Start");
+				System.out.println(((Event) obj).prettyStartTime() + "   Start");
 				break;
 			case "class System.StopSim":
-				System.out.println(((Event) obj).getStartTime() + "   Stop");
+				System.out.println(((Event) obj).prettyStartTime() + "   Stop");
 				printStop(state);
 				break;
 			case "class Shop.EventArrival", "class Shop.EventPick",

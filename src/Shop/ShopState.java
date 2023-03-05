@@ -4,22 +4,24 @@ import System.State;
 
 public class ShopState extends State
 {
-	// Shop parameters, from pg. 5 (comment number equals parameter on that page)
-	// using packet visibility for ease of access.
-	int openCheckouts; // 1
-	int maxCustomers; // 2
-	double arrivalTime; // 3
-	double paymentTimeMin, paymentTimeMax; // 4
-	double pickTimeMin, pickTimeMax; // 5
+	// Shop parameters, from pg. 5 (comment number equals parameter on that page):
+	// - using packet visibility for ease of access (missing public/private keyword)
+	// - but locked to single declaration (using the "final" keyword)
+	final int openCheckouts; // 1
+	final int maxCustomers; // 2
+	final double arrivalTime; // 3
+	final double paymentTimeMin, paymentTimeMax; // 4
+	final double pickTimeMin, pickTimeMax; // 5
 	// TODO: seems unneccesary since opening time is set using the stop event???
-	// private double openTime; // 6
-	long rngSeed; // 7
+	// final double openTime; // 6
+	final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5
-	int customersPayed;
-	int customersMissed;
-	double timeEmptyCheckouts;
-	double timeWaitingCustomers;
+	private int customersWaited;
+	private int customersPayed;
+	private int customersMissed;
+	private double timeEmptyCheckouts;
+	private double timeWaitingCustomers;
 
 	// Runtime instances
 	private boolean open = true;
@@ -47,19 +49,62 @@ public class ShopState extends State
 		this.open = false;
 	}
 
-	public CustomerFactory getCustomers() {
-		return this.customers;
+	public String prettyOpen() {
+		if (isOpen()) {
+			return "O";
+		}
+		return "S";
 	}
 
-	public CheckoutQueue getCheckout() {
-		return this.checkoutQueue;
+	// public CustomerFactory getCustomers() {
+		// return this.customers;
+	// }
+
+	// public CheckoutQueue getCheckout() {
+		// return this.checkoutQueue;
+	// }
+
+	public int freeCheckouts() {
+		// TODO: amount of free checkouts
+		return -1;
 	}
 
-	public boolean freeCheckout() {
-		// TODO: check for a free checkout
-		return false;
+	public boolean hasFreeCheckout() {
+		return (freeCheckouts() > 0);
 	}
 
+	public int getCheckoutLength() {
+		return this.checkoutQueue.size();
+	}
+
+	public String prettyCheckout() {
+		return this.checkoutQueue.toString();
+	}
+
+	public int getShoppingCustomers() {
+		// TODO
+		return -1;
+	}
+
+	public int getCustomersWaited() {
+		return this.customersWaited;
+	}
+
+	public int getCustomersPayed() {
+		return this.customersPayed;
+	}
+
+	public int getCustomersMissed() {
+		return this.customersMissed;
+	}
+
+	public double getTimeEmptyCheckouts() {
+		return this.timeEmptyCheckouts;
+	}
+
+	public double getTimeWaitingCustomers() {
+		return this.timeWaitingCustomers;
+	}
 	public void updateStatistics(){
 		// TODO implement updating of statistics and notify observers of such change
 		// sum of time of empty checkouts
