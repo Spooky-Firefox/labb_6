@@ -19,6 +19,14 @@ public abstract class ShopEvent extends Event {
 		return this.customer;
 	}
 
+	public String prettyCustomer() {
+		// Stupid rule from pg. 9, task 3.
+		if (this.customer == -1) {
+			return "---";
+		}
+		return String.format("%2d", this.customer);
+	}
+
 	@Override
 	final public void execute(State state) {
 		// TODO: ensure it's really a ShopState?
