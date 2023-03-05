@@ -17,8 +17,8 @@ public class RunSim {
 
 		// Sets up initial instances
 		ShopState shopState = new ShopState(
-			openCheckouts, maxCustomers, arrivalTime, paymentTimeMin, paymentTimeMax,
-			pickTimeMin, pickTimeMax, rngSeed
+			openCheckouts, maxCustomers, arrivalTime, pickTimeMin, pickTimeMax,
+			paymentTimeMin, paymentTimeMax, rngSeed
 		);
 		ShopView shopView = new ShopView(shopState);
 		EventQueue eventQueue = new EventQueue(shopState);

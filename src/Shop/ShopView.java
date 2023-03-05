@@ -12,6 +12,7 @@ public class ShopView extends View {
 	}
 
 	// TODO: columns might need adjusting, using \t tabs in the strings.
+	// This whole file is a fucking mess.
 
 	private void printStart(ShopState state) {
 		System.out.println("PARAMETRAR\n==========");

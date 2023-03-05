@@ -1,6 +1,8 @@
 package Shop;
 
 import System.State;
+import Tools.UniformRandomStream;
+import Tools.ExponentialRandomStream;
 
 public class ShopState extends State
 {
@@ -27,18 +29,25 @@ public class ShopState extends State
 	private boolean open = true;
 	private CustomerFactory customers = new CustomerFactory();
 	private CheckoutQueue checkoutQueue = new CheckoutQueue();
+	private ExponentialRandomStream arrivalRNG;
+	private UniformRandomStream pickRNG;
+	private UniformRandomStream paymentRNG;
 
 	public ShopState(
-		int openCheckouts, int maxCustomers, double arrivalTime, double paymentTimeMin,
-		double paymentTimeMax, double pickTimeMin, double pickTimeMax, long rngSeed) {
+		int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
+		double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
 		this.openCheckouts = openCheckouts;
 		this.maxCustomers = maxCustomers;
 		this.arrivalTime = arrivalTime;
-		this.paymentTimeMin = paymentTimeMin;
-		this.paymentTimeMax = paymentTimeMax;
 		this.pickTimeMin = pickTimeMin;
 		this.pickTimeMax = pickTimeMax;
+		this.paymentTimeMin = paymentTimeMin;
+		this.paymentTimeMax = paymentTimeMax;
 		this.rngSeed = rngSeed;
+
+		this.arrivalRNG = new ExponentialRandomStream(arrivalTime, rngSeed);
+		this.pickRNG= new UniformRandomStream(pickTimeMin, pickTimeMax, rngSeed);
+		this.paymentRNG = new UniformRandomStream(paymentTimeMin, paymentTimeMax, rngSeed);
 	}
 
 	public boolean isOpen() {
@@ -54,6 +63,18 @@ public class ShopState extends State
 			return "O";
 		}
 		return "S";
+	}
+
+	public double newArrivalTime() {
+		return this.arrivalRNG.next();
+	}
+
+	public double newPickTime() {
+		return this.pickRNG.next();
+	}
+
+	public double newPaymentTime() {
+		return this.paymentRNG.next();
 	}
 
 	// public CustomerFactory getCustomers() {
@@ -106,7 +127,7 @@ public class ShopState extends State
 		return this.timeWaitingCustomers;
 	}
 	public void updateStatistics(){
-		// TODO implement updating of statistics and notify observers of such change
+		// TODO implement updating of statistics
 		// sum of time of empty checkouts
 		// sum of total time in checkout queue
 		// for the sum of checkout queue time and total time of empty checkouts
