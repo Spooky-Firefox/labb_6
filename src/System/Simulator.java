@@ -11,15 +11,16 @@ public class Simulator {
 	}
 
 	public void runLoop() {
-		while(state.isStopped() == false) {
+		while (events.hasNext()){
+			if (state.isStopped()) {
+				System.out.println("Simulation: STOPPED");
+				return;
+			}
+
 			Event currentEvent = events.nextEvent();
 			state.notify(currentEvent);
 			state.setTime(currentEvent.getStartTime());
 			currentEvent.execute(state);
-
-			if (!events.hasNext()) {
-				state.stop();
-			}
 		}
 	}
 }
