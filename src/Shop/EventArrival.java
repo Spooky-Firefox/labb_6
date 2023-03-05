@@ -13,6 +13,10 @@ public class EventArrival extends ShopEvent {
 		this.setCustomer(customer);
 	}
 
+	public String toString() {
+		return "Ankomst";
+	}
+
 	@Override
 	public void execute(ShopState state) {
 	}

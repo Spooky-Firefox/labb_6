@@ -5,6 +5,10 @@ public class StartSim extends Event {
 		super(time, eventQueue);
 	}
 
+	public String toString() {
+		return "Start";
+	}
+
 	@Override
 	public void execute(State state) {
 		// Do nothing

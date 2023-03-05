@@ -5,6 +5,10 @@ public class StopSim extends Event {
 		super(time, eventQueue);
 	}
 
+	public String toString() {
+		return "Stop";
+	}
+
 	@Override
 	public void execute(State state) {
 		state.stop();

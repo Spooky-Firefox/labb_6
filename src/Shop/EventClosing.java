@@ -8,6 +8,10 @@ public class EventClosing extends ShopEvent {
 		this.setCustomer(0);
 	}
 
+	public String toString() {
+		return "Stanger";
+	}
+
 	@Override
 	public void execute(ShopState state) {
 		state.closeShop();

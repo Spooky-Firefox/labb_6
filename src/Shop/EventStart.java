@@ -9,6 +9,10 @@ public class EventStart extends ShopEvent {
 		super(time, eventQueue);
 	}
 
+	public String toString() {
+		return "Start";
+	}
+
 	@Override
 	public void execute(ShopState state) {
 		// TODO: randomize start time

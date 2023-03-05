@@ -4,12 +4,14 @@ import java.util.Observable;
 
 import System.State;
 import System.View;
+import System.Event;
 
-public class ShopView extends View
-{
+public class ShopView extends View {
 	public ShopView(State state) {
 		super(state);
 	}
+
+	// TODO: columns might need adjusting, using \t tabs in the strings.
 
 	private void printStart(ShopState state) {
 		System.out.println("PARAMETRAR\n==========");
@@ -46,6 +48,11 @@ public class ShopView extends View
 		System.out.println("   Genomsnittlig kotid: " + 0 + " te.");
 	}
 
+	private void printEvent(ShopState state, ShopEvent event) {
+		// It's gonna be a big one..
+		System.out.println(event.getStartTime() + "   " + event);
+	}
+
 	@Override
 	public void update(Observable obs, Object obj) {
 		// obs: a ShopState instance
@@ -58,9 +65,15 @@ public class ShopView extends View
 		switch (event) {
 			case "class Shop.EventStart":
 				printStart(state);
+				System.out.println(((Event) obj).getStartTime() + "   Start");
 				break;
 			case "class System.StopSim":
+				System.out.println(((Event) obj).getStartTime() + "   Stop");
 				printStop(state);
+				break;
+			case "class Shop.EventArrival", "class Shop.EventPick",
+				"class Shop.EventPayment", "class Shop.EventClosing":
+				printEvent(state, (ShopEvent) obj);
 				break;
 			default:
 				System.out.println("Unhandled event: " + obj.getClass());

@@ -13,6 +13,10 @@ public class EventPick extends ShopEvent {
 		this.setCustomer(customer);
 	}
 
+	public String toString() {
+		return "Plock";
+	}
+
 	@Override
 	public void execute(ShopState state) {
 		if (state.freeCheckout()) {

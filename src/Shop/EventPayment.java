@@ -13,6 +13,10 @@ public class EventPayment extends ShopEvent {
 		this.setCustomer(customer);
 	}
 
+	public String toString() {
+		return "Betalning";
+	}
+
 	@Override
 	public void execute(ShopState state) {
 	}
