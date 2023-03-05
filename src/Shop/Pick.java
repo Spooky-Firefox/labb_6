@@ -1,13 +1,15 @@
 package Shop;
 
-import Simulator.EventQueue;
-import Simulator.State;
+import System.EventQueue;
+import System.State;
 
 public class Pick extends ShopEvent {
 	private int customerNumber;
+
 	public Pick(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
+
 	public Pick(int startTime, int customerNumber, EventQueue eventQueue) {
 		super(startTime, eventQueue);
 		this.customerNumber = customerNumber;

@@ -1,4 +1,4 @@
-package Simulator;
+package System;
 
 import Shop.Arrival;
 

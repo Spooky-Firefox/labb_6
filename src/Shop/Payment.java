@@ -1,7 +1,7 @@
 package Shop;
 
-import Simulator.EventQueue;
-import Simulator.State;
+import System.EventQueue;
+import System.State;
 
 public class Payment extends ShopEvent {
 	public Payment(int time, EventQueue eventQueue) {

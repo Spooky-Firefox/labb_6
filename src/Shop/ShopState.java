@@ -1,10 +1,11 @@
 package Shop;
 
-import Simulator.State;
+import System.State;
 
 public class ShopState extends State
 {
 	public boolean open;
+
 	public void updateStatistics(){
 		// TODO implement updating of statistics and notify observers of such change
 		// sum of time of empty checkouts

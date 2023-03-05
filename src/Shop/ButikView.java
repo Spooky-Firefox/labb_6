@@ -2,8 +2,8 @@ package Shop;
 
 import java.util.Observable;
 
-import Simulator.State;
-import Simulator.View;
+import System.State;
+import System.View;
 
 public class ButikView extends View
 {

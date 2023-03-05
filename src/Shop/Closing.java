@@ -1,6 +1,6 @@
 package Shop;
 
-import Simulator.EventQueue;
+import System.EventQueue;
 
 public class Closing extends ShopEvent {
 	public Closing(int time, EventQueue eventQueue) {
