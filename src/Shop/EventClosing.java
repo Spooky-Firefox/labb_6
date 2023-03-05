@@ -3,7 +3,7 @@ package Shop;
 import System.EventQueue;
 
 public class EventClosing extends ShopEvent {
-	public EventClosing(int time, EventQueue eventQueue) {
+	public EventClosing(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 		this.setCustomer(0);
 	}

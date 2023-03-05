@@ -4,11 +4,11 @@ import System.EventQueue;
 import System.State;
 
 public class EventPayment extends ShopEvent {
-	public EventPayment(int time, EventQueue eventQueue) {
+	public EventPayment(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
-	public EventPayment(int startTime, EventQueue eventQueue, int customer) {
+	public EventPayment(double startTime, EventQueue eventQueue, int customer) {
 		this(startTime, eventQueue);
 		this.setCustomer(customer);
 	}

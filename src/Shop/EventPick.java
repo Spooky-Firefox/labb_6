@@ -4,11 +4,11 @@ import System.EventQueue;
 import System.State;
 
 public class EventPick extends ShopEvent {
-	public EventPick(int time, EventQueue eventQueue) {
+	public EventPick(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
-	public EventPick(int startTime, EventQueue eventQueue, int customer) {
+	public EventPick(double startTime, EventQueue eventQueue, int customer) {
 		this(startTime, eventQueue);
 		this.setCustomer(customer);
 	}

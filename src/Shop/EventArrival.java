@@ -4,11 +4,11 @@ import System.EventQueue;
 import System.State;
 
 public class EventArrival extends ShopEvent {
-	public EventArrival(int time, EventQueue eventQueue) {
+	public EventArrival(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
-	public EventArrival(int startTime, EventQueue eventQueue, int customer) {
+	public EventArrival(double startTime, EventQueue eventQueue, int customer) {
 		this(startTime, eventQueue);
 		this.setCustomer(customer);
 	}

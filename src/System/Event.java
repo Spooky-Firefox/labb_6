@@ -1,22 +1,20 @@
 package System;
 
 public abstract class Event {
-	// TODO: use double instead
-    private int startTime;
+    private double startTime;
     private EventQueue queue;
 
-    public Event(int time, EventQueue eventQueue) {
+    public Event(double time, EventQueue eventQueue) {
         this.queue = eventQueue;
         this.startTime = time;
     }
 
-    public int getStartTime(){
-        return startTime;
+    public double getStartTime(){
+        return this.startTime;
     }
 
     public String prettyStartTime() {
-		// TODO: pretty printed time (for use in View)
-		return "-1";
+		return String.format("%6.2f", this.startTime);
 	}
 
     public EventQueue getQueue() {

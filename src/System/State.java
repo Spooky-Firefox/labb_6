@@ -4,7 +4,7 @@ import java.util.Observable;
 
 public class State extends Observable {
 	private boolean stopSimulation;
-	private int currentTime;
+	private double currentTime;
 
 	// Notify any observers (for example View or ShopView)
 	public void notify(Event ev) {
@@ -20,11 +20,11 @@ public class State extends Observable {
 		return this.stopSimulation;
 	}
 
-	public void setTime(int newTime) {
+	public void setTime(double newTime) {
 		this.currentTime = newTime;
 	}
 
-	public int getTime() {
+	public double getTime() {
 		return this.currentTime;
 	}
 }

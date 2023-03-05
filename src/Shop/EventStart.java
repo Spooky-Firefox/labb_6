@@ -5,7 +5,7 @@ import System.State;
 import Shop.EventArrival;
 
 public class EventStart extends ShopEvent {
-	public EventStart(int time, EventQueue eventQueue) {
+	public EventStart(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
@@ -15,10 +15,7 @@ public class EventStart extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		// TODO: randomize start time
-		EventArrival arrival = new EventArrival(
-			super.getStartTime() + 1, super.getQueue()
-		);
+		EventArrival arrival = new EventArrival(state.newArrivalTime(), super.getQueue());
 		super.getQueue().addEvent(arrival);
 	}
 }

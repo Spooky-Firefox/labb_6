@@ -7,7 +7,7 @@ import System.State;
 public abstract class ShopEvent extends Event {
 	private int customer;
 
-	public ShopEvent(int time, EventQueue eventQueue) {
+	public ShopEvent(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
