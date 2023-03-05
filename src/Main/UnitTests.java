@@ -30,10 +30,7 @@ public class UnitTests{
 		assert st.getTime() == ev.getStartTime();
 	}
 
-	public static void main(String[] args){
-		System.out.println("Running unit tests...");
-		// Have to test the Simulator pkg first (since Shop pkg depends on it).
-
+	public static void testSystem() {
 		// State test
 		State st = new State();
 		assert st.isStopped() == false;
@@ -78,12 +75,25 @@ public class UnitTests{
 		assert st.isStopped() == true;
 		assert tv.updates == 2;
 
-		// ButikState butikState = new ButikState();
-		// ButikView butikView = new ButikView(butikState);
-		// butikState.open = true;
-		// Closing closing = new Closing(10, eventQueue);
-		// Simulator sim = new Simulator(butikState, eventQueue);
+		// Simulator test
+		st = new State(); // Resets the states
+		tv = new TestView(st);
+		evq.addEvent(evStart);
+		evq.addEvent(evStop);
+		Simulator sim = new Simulator(st, evq);
+		sim.runLoop();
+		assert tv.updates == 2;
+	}
 
-		System.out.println("Tests OK");
+	public static void main(String[] args){
+		System.out.println("Running unit tests...");
+
+		// Have to test the Simulator pkg first (since Shop pkg depends on it).
+		testSystem();
+		System.out.println("System pkg OK");
+
+		// TODO
+		// testShop();
+		// System.out.println("Shop pkg OK");
 	}
 }
