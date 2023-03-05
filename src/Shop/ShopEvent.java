@@ -24,6 +24,8 @@ public abstract class ShopEvent extends Event {
 		if (this.customer == -1) {
 			return "---";
 		}
+    	// Source, formatting rules:
+    	// https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax
 		return String.format("%2d", this.customer);
 	}
 

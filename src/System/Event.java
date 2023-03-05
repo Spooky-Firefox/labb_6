@@ -14,6 +14,8 @@ public abstract class Event {
     }
 
     public String prettyStartTime() {
+    	// Source, formatting rules:
+    	// https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax
 		return String.format("%6.2f", this.startTime);
 	}
 
