@@ -3,14 +3,14 @@ package Shop;
 import System.EventQueue;
 import System.State;
 
-public class Pick extends ShopEvent {
+public class EventPick extends ShopEvent {
 	private int customerNumber;
 
-	public Pick(int time, EventQueue eventQueue) {
+	public EventPick(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
-	public Pick(int startTime, int customerNumber, EventQueue eventQueue) {
+	public EventPick(int startTime, int customerNumber, EventQueue eventQueue) {
 		super(startTime, eventQueue);
 		this.customerNumber = customerNumber;
 	}
@@ -19,7 +19,9 @@ public class Pick extends ShopEvent {
 	public void execute(ShopState state) {
 		if (state.freeCheckout()) {
 			// TODO: randomize start time
-			Payment payment = new Payment(super.getStartTime() + 1, super.getQueue());
+			EventPayment payment = new EventPayment(
+					super.getStartTime() + 1, super.getQueue()
+			);
 		}
 		else {
 			// TODO

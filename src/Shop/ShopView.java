@@ -5,9 +5,9 @@ import java.util.Observable;
 import System.State;
 import System.View;
 
-public class ButikView extends View
+public class ShopView extends View
 {
-	public ButikView(State state) {
+	public ShopView(State state) {
 		super(state);
 	}
 

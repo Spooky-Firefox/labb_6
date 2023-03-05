@@ -1,6 +1,6 @@
 package System;
 
-import Shop.Arrival;
+import Shop.EventArrival;
 
 public class StartSim extends Event {
 
@@ -10,7 +10,7 @@ public class StartSim extends Event {
 
 	@Override
 	public void execute(State state) {
-		Arrival arrival = new Arrival(super.getStartTime() + 1, super.getQueue());
+		EventArrival arrival = new EventArrival(super.getStartTime() + 1, super.getQueue());
 		super.getQueue().addEvent(arrival);
 	}
 }

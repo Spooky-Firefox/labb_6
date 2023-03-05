@@ -13,8 +13,10 @@ public abstract class ShopEvent extends Event {
 
 	@Override
 	final public void execute(State state) {
-		((ShopState) state).updateStatistics();
-		this.execute((ShopState) state);
+		// TODO: ensure it's really a ShopState?
+		ShopState st = (ShopState) state;
+		st.updateStatistics();
+		this.execute(st);
 	}
 
 	abstract void execute(ShopState state);

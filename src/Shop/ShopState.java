@@ -6,6 +6,31 @@ public class ShopState extends State
 {
 	public boolean open;
 
+	public ShopState() {
+		this.open = true;
+	}
+
+	public boolean isOpen() {
+		return this.open;
+	}
+
+	public void closeShop() {
+		this.open = false;
+	}
+
+	// TODO
+	// public CustomerFactory getCustomers() {
+	// }
+
+	// TODO
+	// public CheckoutQueue getCheckout() {
+	// }
+
+	public boolean freeCheckout() {
+		// TODO: check for a free checkout
+		return false;
+	}
+
 	public void updateStatistics(){
 		// TODO implement updating of statistics and notify observers of such change
 		// sum of time of empty checkouts
@@ -16,8 +41,4 @@ public class ShopState extends State
 		// queueTime = queueTime + checkoutQueue.size()*deltaTime
 	}
 
-	public boolean freeCheckout() {
-		// TODO: check for a free checkout
-		return false;
-	}
 }
