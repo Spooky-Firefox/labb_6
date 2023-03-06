@@ -13,6 +13,9 @@ public class CheckoutQueue {
 		this.maxCheckouts = maxCheckouts;
 		this.customers = new ArrayList<>();
 	}
+	public void makeFreeCheckout() {
+		this.freeCheckouts++;
+	}
 	public void useCheckout() {
 		this.freeCheckouts--;
 	}
