@@ -18,7 +18,6 @@ public class Simulator {
 			}
 
 			Event currentEvent = events.nextEvent();
-			state.notify(currentEvent);
 			state.setTime(currentEvent.getStartTime());
 			currentEvent.execute(state);
 		}
