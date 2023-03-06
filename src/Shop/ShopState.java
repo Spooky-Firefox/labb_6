@@ -78,9 +78,18 @@ public class ShopState extends State {
 
 	public String prettyOpen() {
 		if (this.open){
-			return "Ö";
+			return "O";
 		} else {
 			return "S";
 		}
+	}
+	public double newArrivalTime() {
+		return this.arrivalRNG.next();
+	}
+	public double newPickTime() {
+		return this.pickRNG.next();
+	}
+	public double newPaymentTime() {
+		return this.paymentRNG.next();
 	}
 }
