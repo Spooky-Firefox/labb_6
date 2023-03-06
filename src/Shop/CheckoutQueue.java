@@ -4,18 +4,24 @@ import java.util.ArrayList;
 
 public class CheckoutQueue {
 	private ArrayList<Integer> customers;
+	private int maxCheckouts;
+	private int freeCheckouts;
 
-	public CheckoutQueue() {
+	public CheckoutQueue(int maxCheckouts) {
 		// TODO: add max checkouts from state, so can measure free checkouts
-		customers = new ArrayList<>();
+		this.freeCheckouts = maxCheckouts;
+		this.maxCheckouts = maxCheckouts;
+		this.customers = new ArrayList<>();
 	}
 
 	public void addCustomer(int customersNumber) {
 		this.customers.add(customersNumber);
+		this.freeCheckouts--;
 	}
 
 	public int nextCustomer() {
 		return this.customers.remove(0);
+		
 	}
 
 	public boolean hasNext() {
