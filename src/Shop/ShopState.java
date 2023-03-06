@@ -32,7 +32,7 @@ public class ShopState extends State {
 	int freeCheckouts; // used to se if to enter queue or payment
 	boolean open = true;
 	CustomerFactory customers = new CustomerFactory();
-	CheckoutQueue checkoutQueue = new CheckoutQueue();
+	CheckoutQueue checkoutQueue;
 	ExponentialRandomStream arrivalRNG;
 	UniformRandomStream pickRNG;
 	UniformRandomStream paymentRNG;
@@ -58,6 +58,7 @@ public class ShopState extends State {
 		this.paymentTimeMin = paymentTimeMin;
 		this.paymentTimeMax = paymentTimeMax;
 		this.rngSeed = rngSeed;
+		this.checkoutQueue = new CheckoutQueue(openCheckouts);
 		this.arrivalRNG = new ExponentialRandomStream(arrivalTime, rngSeed);
 		this.pickRNG= new UniformRandomStream(pickTimeMin, pickTimeMax, rngSeed);
 		this.paymentRNG = new UniformRandomStream(paymentTimeMin, paymentTimeMax, rngSeed);

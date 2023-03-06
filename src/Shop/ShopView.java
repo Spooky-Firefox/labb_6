@@ -28,7 +28,7 @@ public class ShopView extends View {
 		System.out.println("Fro, f...................: " + state.rngSeed);
 		System.out.println("\nFORLOPP\n=======");
 		// TODO: might need column adjustments...
-		System.out.println("Tid     Handelse  Kund\t ?  led  ledT  I  $  :-(  koat  koT  koar  [Kassako..]");
+		System.out.println("Tid\t\tHandelse\tKund\t?\tled\tledT\tI\t$\t:-(\tkoat\tkoT\t\tkoar [Kassako..]");
 	}
 
 	private void printStop(ShopState state) {
@@ -52,14 +52,12 @@ public class ShopView extends View {
 
 	private void printEvent(ShopState state, ShopEvent event) {
 		// It's gonna be a big one..
-		System.out.println(event.prettyStartTime() + "  " + event + "   " +
-			event.prettyCustomer() + "\t " + state.prettyOpen() + "  " +
-			state.checkoutQueue.noFree() + "   " + state.timeEmptyCheckouts + "   " +
-			state.shoppingCustomers + " " + state.customersPayed + "  " +
-			state.customersMissed + "    " + state.customersWaited + "     " +
-			state.timeWaitingCustomers + "  " + state.checkoutQueue.size() + "     " +
-			state.checkoutQueue
-		);
+		System.out.printf("%s\t%s\t\t%s\t\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t\t%.2f\t%d\t%s\n",
+			event.prettyStartTime(),event,event.prettyCustomer(),  // time event-name customerNr
+			state.prettyOpen(),state.freeCheckouts,state.timeEmptyCheckouts, // open, freecheakouts, time empty cheakouts
+			state.shoppingCustomers,state.customersPayed,state.customersMissed, state.customersWaited,
+			state.timeWaitingCustomers, state.checkoutQueue.size(),state.checkoutQueue.toString()
+			);
 	}
 
 	@Override
@@ -77,7 +75,7 @@ public class ShopView extends View {
 				printStart(state);
 				System.out.println(event.prettyStartTime() + "  " + event);
 				break;
-			case "class System.StopSim":
+			case "class Shop.ShopStop":
 				System.out.println(event.prettyStartTime() + "  " + event);
 				printStop(state);
 				break;

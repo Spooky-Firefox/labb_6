@@ -34,6 +34,8 @@ public abstract class ShopEvent extends Event {
 		// TODO: ensure it's really a ShopState?
 		ShopState st = (ShopState) state;
 		st.updateStatistics();
+		state.notify(this);
+
 		this.execute(st);
 	}
 
