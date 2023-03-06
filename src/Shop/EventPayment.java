@@ -21,6 +21,10 @@ public class EventPayment extends ShopEvent {
 	public void execute(ShopState state) {
 		state.shoppingCustomers--;
 		state.customersPayed++;
+		// customer is done, free checkout
+		state.checkoutQueue.makeFreeCheckout();
+
+		// if there are more customer occupy checkout with new customer
 		if(state.checkoutQueue.hasNext()) {
 			state.checkoutQueue.nextCustomer();
 			EventPayment payment = new EventPayment(
@@ -28,9 +32,6 @@ public class EventPayment extends ShopEvent {
 			super.getQueue().addEvent(payment);
 			state.checkoutQueue.useCheckout();
 		}
-		else {
-			state.checkoutQueue.makeFreeCheckout();
-		}
-		
+
 	}
 }
