@@ -4,13 +4,9 @@ import Controller.EventQueue;
 import Controller.State;
 
 public class EventPayment extends ShopEvent {
-	public EventPayment(double time, EventQueue eventQueue) {
-		super(time, eventQueue);
-	}
-
 	public EventPayment(double startTime, EventQueue eventQueue, int customer) {
-		this(startTime, eventQueue);
-		this.setCustomer(customer);
+		super(startTime, eventQueue);
+		this.customer = customer;
 	}
 
 	public String toString() {
@@ -28,7 +24,7 @@ public class EventPayment extends ShopEvent {
 		if(state.checkoutQueue.hasNext()) {
 			state.checkoutQueue.nextCustomer();
 			EventPayment payment = new EventPayment(
-					super.getStartTime() + state.newPaymentTime(), super.getQueue());
+					super.getStartTime() + state.newPaymentTime(), super.getQueue(),this.customer);
 			super.getQueue().addEvent(payment);
 			state.checkoutQueue.useCheckout();
 		}

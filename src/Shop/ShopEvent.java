@@ -5,18 +5,10 @@ import Controller.EventQueue;
 import Controller.State;
 
 public abstract class ShopEvent extends Event {
-	private int customer;
+	protected int customer;
 
 	public ShopEvent(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
-	}
-
-	public void setCustomer(int customer) {
-		this.customer = customer;
-	}
-
-	public int getCustomer() {
-		return this.customer;
 	}
 
 	public String prettyCustomer() {

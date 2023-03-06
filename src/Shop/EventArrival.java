@@ -7,7 +7,7 @@ public class EventArrival extends ShopEvent {
 
 	public EventArrival(double startTime, EventQueue eventQueue, int customer) {
 		super(startTime, eventQueue);
-		this.setCustomer(customer);
+		this.customer = customer;
 	}
 
 	public String toString() {
@@ -21,7 +21,7 @@ public class EventArrival extends ShopEvent {
 			state.shoppingCustomers += 1;
 
 			EventPick pick = new EventPick(this.getStartTime() +
-			state.newPickTime(), super.getQueue());
+			state.newPickTime(), super.getQueue(),this.customer);
 			super.getQueue().addEvent(pick);
 			int custumerNumber = state.customers.newCustomer();
 			EventArrival Arrival = new EventArrival(this.getStartTime() +

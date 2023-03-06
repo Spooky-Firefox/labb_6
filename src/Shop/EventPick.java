@@ -4,13 +4,9 @@ import Controller.EventQueue;
 import Controller.State;
 
 public class EventPick extends ShopEvent {
-	public EventPick(double time, EventQueue eventQueue) {
-		super(time, eventQueue);
-	}
-
 	public EventPick(double startTime, EventQueue eventQueue, int customer) {
-		this(startTime, eventQueue);
-		this.setCustomer(customer);
+		super(startTime, eventQueue);
+		this.customer = customer;
 	}
 
 	public String toString() {
@@ -21,12 +17,12 @@ public class EventPick extends ShopEvent {
 	public void execute(ShopState state) {
 		if (state.checkoutQueue.hasFree()) {
 			EventPayment payment = new EventPayment(
-					super.getStartTime() + state.newPaymentTime(), super.getQueue());
+					super.getStartTime() + state.newPaymentTime(), super.getQueue(),this.customer);
 			super.getQueue().addEvent(payment);
 			state.checkoutQueue.useCheckout();
 		}
 		else {
-			state.checkoutQueue.addCustomer(this.getCustomer());
+			state.checkoutQueue.addCustomer(this.customer);
 		}
 	}
 }
