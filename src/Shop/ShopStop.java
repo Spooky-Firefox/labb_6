@@ -11,4 +11,9 @@ public class ShopStop extends ShopEvent {
 	void execute(ShopState state) {
 		state.stop();
 	}
+
+	@Override
+	public String toString() {
+		return "Stop";
+	}
 }
