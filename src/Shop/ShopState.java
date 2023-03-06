@@ -65,10 +65,12 @@ public class ShopState extends State {
 
 	}
 	public void updateStatistics(){
-		// sum of total time in checkout queue
-		this.timeWaitingCustomers = this.timeWaitingCustomers + this.checkoutQueue.size() * this.deltaTime;
-		// sum of time of empty checkouts
-		this.timeEmptyCheckouts = this.timeEmptyCheckouts + this.freeCheckouts * this.deltaTime;
+		if(this.open || this.shoppingCustomers > 0) {
+			// sum of total time in checkout queue
+			this.timeWaitingCustomers = this.timeWaitingCustomers + this.checkoutQueue.size() * this.deltaTime;
+			// sum of time of empty checkouts
+			this.timeEmptyCheckouts = this.timeEmptyCheckouts + this.freeCheckouts * this.deltaTime;
+		}
 	}
 
 	@Override
