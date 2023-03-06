@@ -23,7 +23,7 @@ public class CheckoutQueue {
 
 	public int nextCustomer() {
 		return this.customers.remove(0);
-		
+
 	}
 
 	public boolean hasNext() {
@@ -35,8 +35,7 @@ public class CheckoutQueue {
 	}
 
 	public int noFree() {
-		// TODO: number of free checkouts
-		return -1;
+		return this.freeCheckouts;
 	}
 
 	public boolean hasFree() {
