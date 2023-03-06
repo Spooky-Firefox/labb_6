@@ -75,4 +75,12 @@ public class ShopState extends State {
 		this.deltaTime = newTime - this.currentTime;
 		super.setTime(newTime);
 	}
+
+	public String prettyOpen() {
+		if (this.open){
+			return "Ö";
+		} else {
+			return "S";
+		}
+	}
 }
