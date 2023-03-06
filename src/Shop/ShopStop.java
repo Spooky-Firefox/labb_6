@@ -1,8 +1,8 @@
 package Shop;
 
-import System.EventQueue;
-import System.StopSim;
-import System.State;
+import Controller.EventQueue;
+import Controller.StopSim;
+import Controller.State;
 
 public class ShopStop extends StopSim {
 	public ShopStop(double time, EventQueue eventQueue) {

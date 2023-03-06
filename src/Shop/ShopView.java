@@ -2,9 +2,9 @@ package Shop;
 
 import java.util.Observable;
 
-import System.State;
-import System.View;
-import System.Event;
+import Controller.State;
+import Controller.View;
+import Controller.Event;
 
 public class ShopView extends View {
 	public ShopView(State state) {

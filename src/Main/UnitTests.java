@@ -3,7 +3,7 @@ package Main;
 import java.util.Observable;
 
 import Shop.*;
-import System.*;
+import Controller.*;
 
 public class UnitTests{
 

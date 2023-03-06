@@ -1,6 +1,6 @@
 package Shop;
 
-import System.EventQueue;
+import Controller.EventQueue;
 
 public class EventClosing extends ShopEvent {
 	public EventClosing(double time, EventQueue eventQueue) {

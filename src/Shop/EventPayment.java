@@ -1,7 +1,7 @@
 package Shop;
 
-import System.EventQueue;
-import System.State;
+import Controller.EventQueue;
+import Controller.State;
 
 public class EventPayment extends ShopEvent {
 	public EventPayment(double time, EventQueue eventQueue) {
@@ -31,6 +31,6 @@ public class EventPayment extends ShopEvent {
 		else {
 			state.checkoutQueue.makeFreeCheckout();
 		}
-		
+
 	}
 }

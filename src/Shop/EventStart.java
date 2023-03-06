@@ -1,7 +1,7 @@
 package Shop;
 
-import System.EventQueue;
-import System.State;
+import Controller.EventQueue;
+import Controller.State;
 import Shop.EventArrival;
 
 public class EventStart extends ShopEvent {

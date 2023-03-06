@@ -1,7 +1,7 @@
 package Shop;
 
-import System.EventQueue;
-import System.State;
+import Controller.EventQueue;
+import Controller.State;
 
 public class EventPick extends ShopEvent {
 	public EventPick(double time, EventQueue eventQueue) {

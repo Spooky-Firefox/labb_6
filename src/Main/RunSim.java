@@ -1,7 +1,7 @@
 package Main;
 
 import Shop.*;
-import System.*;
+import Controller.*;
 
 public class RunSim {
 	public static void main(String[] args){

@@ -1,4 +1,4 @@
-package System;
+package Controller;
 
 public abstract class Event {
 	private double startTime;

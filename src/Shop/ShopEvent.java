@@ -1,8 +1,8 @@
 package Shop;
 
-import System.Event;
-import System.EventQueue;
-import System.State;
+import Controller.Event;
+import Controller.EventQueue;
+import Controller.State;
 
 public abstract class ShopEvent extends Event {
 	private int customer;

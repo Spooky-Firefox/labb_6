@@ -1,7 +1,7 @@
 package Shop;
 
-import System.EventQueue;
-import System.State;
+import Controller.EventQueue;
+import Controller.State;
 
 public class EventArrival extends ShopEvent {
 
@@ -17,20 +17,20 @@ public class EventArrival extends ShopEvent {
 	@Override
 	public void execute(ShopState state) {
 		if(state.open && state.shoppingCustomers < state.maxCustomers) {
-			
+
 			state.shoppingCustomers += 1;
-			
-			EventPick pick = new EventPick(this.getStartTime() + 
+
+			EventPick pick = new EventPick(this.getStartTime() +
 			state.newPickTime(), super.getQueue());
 			super.getQueue().addEvent(pick);
 			int custumerNumber = state.customers.newCustomer();
-			EventArrival Arrival = new EventArrival(this.getStartTime() + 
+			EventArrival Arrival = new EventArrival(this.getStartTime() +
 					state.newArrivalTime(), super.getQueue(), custumerNumber);
 					super.getQueue().addEvent(Arrival);
 		}
 		else if(state.open && state.shoppingCustomers >= state.maxCustomers) {
-			state.customersMissed += 1;		
+			state.customersMissed += 1;
 		}
-		
+
 	}
 }

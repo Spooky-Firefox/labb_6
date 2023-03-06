@@ -1,4 +1,4 @@
-package System;
+package Controller;
 
 
 public class Simulator {
