@@ -14,6 +14,6 @@ public class EventClosing extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		state.closeShop();
+		state.open = false;
 	}
 }

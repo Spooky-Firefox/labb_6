@@ -34,11 +34,11 @@ public class ShopView extends View {
 	private void printStop(ShopState state) {
 		System.out.println("\nRESULTAT\n========\n");
 		System.out.println("1) Av " + state.maxCustomers + " kunder handlade " +
-			state.getCustomersPayed() + " medan " +
-			state.getCustomersMissed() + " missades.\n");
+			state.customersPayed + " medan " +
+			state.customersMissed + " missades.\n");
 
 		System.out.println("2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
-			state.getTimeEmptyCheckouts() + " te.");
+			state.timeEmptyCheckouts + " te.");
 		// Yeah no, no idea what kind of unit te is..
 
 		// TODO: STAT VARS for these last lines!
@@ -54,11 +54,11 @@ public class ShopView extends View {
 		// It's gonna be a big one..
 		System.out.println(event.prettyStartTime() + "  " + event + "   " +
 			event.prettyCustomer() + "\t " + state.prettyOpen() + "  " +
-			state.freeCheckouts() + "   " + state.getTimeEmptyCheckouts() + "   " +
-			state.getShoppingCustomers() + " " + state.getCustomersPayed() + "  " +
-			state.getCustomersMissed() + "    " + state.getCustomersWaited() + "     " +
-			state.getTimeWaitingCustomers() + "  " + state.getCheckoutLength() + "     " +
-			state.prettyCheckout()
+			state.checkoutQueue.noFree() + "   " + state.timeEmptyCheckouts + "   " +
+			state.shoppingCustomers + " " + state.customersPayed + "  " +
+			state.customersMissed + "    " + state.customersWaited + "     " +
+			state.timeWaitingCustomers + "  " + state.checkoutQueue.size() + "     " +
+			state.checkoutQueue
 		);
 	}
 

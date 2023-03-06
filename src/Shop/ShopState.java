@@ -19,19 +19,20 @@ public class ShopState extends State
 	final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5
-	private int customersWaited;
-	private int customersPayed;
-	private int customersMissed;
-	private double timeEmptyCheckouts;
-	private double timeWaitingCustomers;
+	int customersWaited;
+	int customersPayed;
+	int customersMissed;
+	double timeEmptyCheckouts;
+	double timeWaitingCustomers;
 
-	// Runtime instances
-	private boolean open = true;
-	private CustomerFactory customers = new CustomerFactory();
-	private CheckoutQueue checkoutQueue = new CheckoutQueue();
-	private ExponentialRandomStream arrivalRNG;
-	private UniformRandomStream pickRNG;
-	private UniformRandomStream paymentRNG;
+	// Extra, custom runtime instances
+	int shoppingCustomers;
+	boolean open = true;
+	CustomerFactory customers = new CustomerFactory();
+	CheckoutQueue checkoutQueue = new CheckoutQueue();
+	ExponentialRandomStream arrivalRNG;
+	UniformRandomStream pickRNG;
+	UniformRandomStream paymentRNG;
 
 	public ShopState(
 		int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
@@ -44,25 +45,9 @@ public class ShopState extends State
 		this.paymentTimeMin = paymentTimeMin;
 		this.paymentTimeMax = paymentTimeMax;
 		this.rngSeed = rngSeed;
-
 		this.arrivalRNG = new ExponentialRandomStream(arrivalTime, rngSeed);
 		this.pickRNG= new UniformRandomStream(pickTimeMin, pickTimeMax, rngSeed);
 		this.paymentRNG = new UniformRandomStream(paymentTimeMin, paymentTimeMax, rngSeed);
-	}
-
-	public boolean isOpen() {
-		return this.open;
-	}
-
-	public void closeShop() {
-		this.open = false;
-	}
-
-	public String prettyOpen() {
-		if (isOpen()) {
-			return "O";
-		}
-		return "S";
 	}
 
 	public double newArrivalTime() {
@@ -77,55 +62,13 @@ public class ShopState extends State
 		return this.paymentRNG.next();
 	}
 
-	// public CustomerFactory getCustomers() {
-		// return this.customers;
-	// }
-
-	// public CheckoutQueue getCheckout() {
-		// return this.checkoutQueue;
-	// }
-
-	public int freeCheckouts() {
-		// TODO: amount of free checkouts
-		return -1;
+	public String prettyOpen() {
+		if (this.open) {
+			return "O";
+		}
+		return "S";
 	}
 
-	public boolean hasFreeCheckout() {
-		return (freeCheckouts() > 0);
-	}
-
-	public int getCheckoutLength() {
-		return this.checkoutQueue.size();
-	}
-
-	public String prettyCheckout() {
-		return this.checkoutQueue.toString();
-	}
-
-	public int getShoppingCustomers() {
-		// TODO
-		return -1;
-	}
-
-	public int getCustomersWaited() {
-		return this.customersWaited;
-	}
-
-	public int getCustomersPayed() {
-		return this.customersPayed;
-	}
-
-	public int getCustomersMissed() {
-		return this.customersMissed;
-	}
-
-	public double getTimeEmptyCheckouts() {
-		return this.timeEmptyCheckouts;
-	}
-
-	public double getTimeWaitingCustomers() {
-		return this.timeWaitingCustomers;
-	}
 	public void updateStatistics(){
 		// TODO implement updating of statistics
 		// sum of time of empty checkouts
@@ -135,5 +78,4 @@ public class ShopState extends State
 		// a example of calculating the sum queue time
 		// queueTime = queueTime + checkoutQueue.size()*deltaTime
 	}
-
 }
