@@ -4,7 +4,7 @@ import java.util.Observable;
 
 public class State extends Observable {
 	private boolean stopSimulation;
-	private int currentTime;
+	protected int currentTime;
 
 	public void stop() {
 		this.stopSimulation = true;
