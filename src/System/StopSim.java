@@ -1,7 +1,7 @@
 package System;
 
 public class StopSim extends Event {
-	public StopSim(int time, EventQueue eventQueue) {
+	public StopSim(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
