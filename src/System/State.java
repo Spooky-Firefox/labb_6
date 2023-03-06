@@ -1,4 +1,4 @@
-package Simulator;
+package System;
 
 import java.util.Observable;
 

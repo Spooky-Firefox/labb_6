@@ -6,7 +6,7 @@ import Tools.ExponentialRandomStream;
 
 public class ShopState extends State {
 	// used for some statistics calculations
-	private int deltaTime;
+	private double deltaTime;
 
 	// Shop parameters, from pg. 5 (comment number equals parameter on that page):
 	// - using public keyword so that
@@ -29,8 +29,8 @@ public class ShopState extends State {
 
 	// Extra, custom runtime instances
 	int shoppingCustomers;
-	int freeCheakouts // used to se if to enter queue or payment
-	int haveQued; // se page 9, point j
+	int freeCheckouts; // used to se if to enter queue or payment
+	int haveQueued; // se page 9, point j
 	boolean open = true;
 	CustomerFactory customers = new CustomerFactory();
 	CheckoutQueue checkoutQueue = new CheckoutQueue();
@@ -43,8 +43,8 @@ public class ShopState extends State {
 			double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
 
 		this.openCheckouts = openCheckouts;
-		this.freeCheakouts = openCheckouts; // all cheakouts are free att start
-		this.haveQued = 0;
+		this.freeCheckouts = openCheckouts; // all cheakouts are free att start
+		this.haveQueued = 0;
 
 		this.maxCustomers = maxCustomers;
 		this.shoppingCustomers = 0;
@@ -71,7 +71,7 @@ public class ShopState extends State {
 	}
 
 	@Override
-	public void setTime(int newTime) {
+	public void setTime(double newTime) {
 		this.deltaTime = newTime - this.currentTime;
 		super.setTime(newTime);
 	}
