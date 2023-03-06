@@ -3,7 +3,7 @@ package Main;
 import java.util.Observable;
 
 import Shop.*;
-import Simulator.*;
+import System.*;
 
 public class UnitTests{
 
@@ -17,17 +17,29 @@ public class UnitTests{
 			super(st);
 		}
 		public void update(Observable obs, Object obj) {
+			// TODO: some way to check that event (in obj) matches wanted event
 			updates++;
-			System.out.println("OBS: " + obs + "\tOBJ: " + obj);
 		}
 	}
 
-	public static void main(String[] args){
-		System.out.println("Running unit tests...");
-		// Have to test the Simulator pkg first (since Shop pkg depends on it).
+	private static void runEvent(State st, Event ev) {
+		// Stolen from Simulator.runLoop()
+		st.notify(ev);
+		st.setTime(ev.getStartTime());
+		ev.execute(st);
+		assert st.getTime() == ev.getStartTime();
+	}
+
+	public static void testSystem() {
+		// State test
+		State st = new State();
+		assert st.isStopped() == false;
+		st.stop();
+		assert st.isStopped() == true;
+		assert st.getTime() == 0;
 
 		// EventQueue test
-		EventQueue evq = new EventQueue();
+		EventQueue evq = new EventQueue(st);
 		assert evq.hasNext() == false;
 
 		// StartSim test
@@ -52,32 +64,36 @@ public class UnitTests{
 		StopSim evStopTest = (StopSim) ev;
 		assert evStopTest.equals(evStop);
 
-		// State test
-		State st = new State();
-		assert st.isStopped() == false;
-		st.stop();
-		assert st.isStopped() == true;
-		assert st.getTime() == 0;
-
 		// View test
 		st = new State(); // Resets the state
 		TestView tv = new TestView(st);
 		assert tv.updates == 0;
-		evStart.execute(st);
+		runEvent(st, evStart);
 		assert st.isStopped() == false;
-		assert st.getTime() == STARTTIME;
 		assert tv.updates == 1;
-		evStop.execute(st);
+		runEvent(st, evStop);
 		assert st.isStopped() == true;
-		assert st.getTime() == STOPTIME;
 		assert tv.updates == 2;
 
-		// ButikState butikState = new ButikState();
-		// ButikView butikView = new ButikView(butikState);
-		// butikState.open = true;
-		// Closing closing = new Closing(10, eventQueue);
-		// Simulator sim = new Simulator(butikState, eventQueue);
+		// Simulator test
+		st = new State(); // Resets the states
+		tv = new TestView(st);
+		evq.addEvent(evStart);
+		evq.addEvent(evStop);
+		Simulator sim = new Simulator(st, evq);
+		sim.runLoop();
+		assert tv.updates == 2;
+	}
 
-		System.out.println("Tests OK");
+	public static void main(String[] args){
+		System.out.println("Running unit tests...");
+
+		// Have to test the Simulator pkg first (since Shop pkg depends on it).
+		testSystem();
+		System.out.println("System pkg OK");
+
+		// TODO
+		// testShop();
+		// System.out.println("Shop pkg OK");
 	}
 }

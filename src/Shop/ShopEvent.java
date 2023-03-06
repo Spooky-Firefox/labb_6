@@ -1,21 +1,43 @@
 package Shop;
 
-import Simulator.Event;
-import Simulator.EventQueue;
-import Simulator.State;
+import System.Event;
+import System.EventQueue;
+import System.State;
 
 public abstract class ShopEvent extends Event {
-	public int customersNumber;
+	private int customer;
 
-	public ShopEvent(int time, EventQueue eventQueue) {
+	public ShopEvent(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
+	}
+
+	public void setCustomer(int customer) {
+		this.customer = customer;
+	}
+
+	public int getCustomer() {
+		return this.customer;
+	}
+
+	public String prettyCustomer() {
+		// Stupid rule from pg. 9, task 3.
+		if (this.customer == -1) {
+			return "---";
+		}
+		// Source, formatting rules:
+		// https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax
+		return String.format("%2d", this.customer);
 	}
 
 	@Override
 	final public void execute(State state) {
-		((ShopState) state).updateStatistics();
-		this.execute((ShopState) state);
+		// TODO: ensure it's really a ShopState?
+		ShopState st = (ShopState) state;
+		st.updateStatistics();
+		this.execute(st);
 	}
 
+	// NOTE: This func is automagically run by the general execute(State) above,
+	// inside Simulator.runLoop(), so there's no need to call super() in this func!
 	abstract void execute(ShopState state);
 }

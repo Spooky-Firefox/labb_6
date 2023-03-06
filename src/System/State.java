@@ -4,25 +4,29 @@ import java.util.Observable;
 
 public class State extends Observable {
 	private boolean stopSimulation;
-	protected int currentTime;
+	protected double currentTime;
+
+	// Notify any observers (for example View or ShopView)
+	public void notify(Event ev) {
+		this.setChanged();
+		this.notifyObservers(ev);
+	}
 
 	public void stop() {
 		this.stopSimulation = true;
-		this.setChanged();
-		this.notifyObservers();
 	}
 
 	public boolean isStopped() {
 		return this.stopSimulation;
 	}
 
-	public void setTime(int newTime) {
+	public void setTime(double newTime) {
 		this.currentTime = newTime;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	public int getTime() {
+	public double getTime() {
 		return this.currentTime;
 	}
 }

@@ -1,16 +1,16 @@
-package Simulator;
-
-import Shop.Arrival;
+package System;
 
 public class StartSim extends Event {
-
 	public StartSim(int time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
+	public String toString() {
+		return "Start";
+	}
+
 	@Override
 	public void execute(State state) {
-		Arrival arrival = new Arrival(super.getStartTime() + 1, super.getQueue());
-		super.getQueue().addEvent(arrival);
+		// Do nothing
 	}
 }
