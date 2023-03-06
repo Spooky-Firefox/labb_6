@@ -24,11 +24,11 @@ public class RunSim {
 		EventQueue eventQueue = new EventQueue(shopState);
 
 		// Adds initial events
-		EventStart eventStart = new EventStart(0, eventQueue);
+		Event eventStart = new EventStart(0, eventQueue);
 		eventQueue.addEvent(eventStart);
-		StopSim stopSim = new StopSim(999, eventQueue);
+		Event stopSim = new ShopStop(999, eventQueue);
 		eventQueue.addEvent(stopSim);
-		EventClosing eventClose = new EventClosing(10, eventQueue);
+		Event eventClose = new EventClosing(10, eventQueue);
 		eventQueue.addEvent(eventClose);
 
 		// Sets up and runs the simulator

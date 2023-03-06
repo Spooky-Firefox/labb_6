@@ -75,7 +75,7 @@ public class ShopView extends View {
 				printStart(state);
 				System.out.println(event.prettyStartTime() + "  " + event);
 				break;
-			case "class System.StopSim":
+			case "class Shop.ShopStop":
 				System.out.println(event.prettyStartTime() + "  " + event);
 				printStop(state);
 				break;
