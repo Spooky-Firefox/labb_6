@@ -54,7 +54,7 @@ public class ShopView extends View {
 		// It's gonna be a big one..
 		System.out.printf("%s\t%s\t\t%s\t\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t\t%.2f\t%d\t%s\n",
 			event.prettyStartTime(),event,event.prettyCustomer(),  // time event-name customerNr
-			state.prettyOpen(),state.freeCheckouts,state.timeEmptyCheckouts, // open, freecheakouts, time empty cheakouts
+			state.prettyOpen(),state.checkoutQueue.noFree(),state.timeEmptyCheckouts, // open, freecheakouts, time empty cheakouts
 			state.shoppingCustomers,state.customersPayed,state.customersMissed, state.customersWaited,
 			state.timeWaitingCustomers, state.checkoutQueue.size(),state.checkoutQueue.toString()
 			);

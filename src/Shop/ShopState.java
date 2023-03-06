@@ -29,7 +29,6 @@ public class ShopState extends State {
 
 	// Extra, custom runtime instances
 	int shoppingCustomers;
-	int freeCheckouts; // used to se if to enter queue or payment
 	boolean open = true;
 	CustomerFactory customers = new CustomerFactory();
 	CheckoutQueue checkoutQueue;
@@ -42,7 +41,6 @@ public class ShopState extends State {
 			double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
 
 		this.openCheckouts = openCheckouts;
-		this.freeCheckouts = openCheckouts; // all checkouts are free att start
 		this.timeEmptyCheckouts = 0;
 		this.timeWaitingCustomers = 0;
 
@@ -68,7 +66,7 @@ public class ShopState extends State {
 		// sum of total time in checkout queue
 		this.timeWaitingCustomers = this.timeWaitingCustomers + this.checkoutQueue.size() * this.deltaTime;
 		// sum of time of empty checkouts
-		this.timeEmptyCheckouts = this.timeEmptyCheckouts + this.freeCheckouts * this.deltaTime;
+		this.timeEmptyCheckouts = this.timeEmptyCheckouts + this.checkoutQueue.noFree() * this.deltaTime;
 	}
 
 	@Override
