@@ -22,8 +22,6 @@ public class State extends Observable {
 
 	public void setTime(double newTime) {
 		this.currentTime = newTime;
-		this.setChanged();
-		this.notifyObservers();
 	}
 
 	public double getTime() {
