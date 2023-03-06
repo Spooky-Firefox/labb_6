@@ -4,12 +4,9 @@ import System.EventQueue;
 import System.State;
 
 public class EventArrival extends ShopEvent {
-	public EventArrival(double time, EventQueue eventQueue) {
-		super(time, eventQueue);
-	}
 
 	public EventArrival(double startTime, EventQueue eventQueue, int customer) {
-		this(startTime, eventQueue);
+		super(startTime, eventQueue);
 		this.setCustomer(customer);
 	}
 
@@ -19,5 +16,21 @@ public class EventArrival extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
+		if(state.open && state.shoppingCustomers < state.maxCustomers) {
+			
+			state.shoppingCustomers += 1;
+			
+			EventPick pick = new EventPick(this.getStartTime() + 
+			state.newPickTime(), super.getQueue());
+			super.getQueue().addEvent(pick);
+			int custumerNumber = state.customers.newCustomer();
+			EventArrival Arrival = new EventArrival(this.getStartTime() + 
+					state.newArrivalTime(), super.getQueue(), custumerNumber);
+					super.getQueue().addEvent(Arrival);
+		}
+		else if(state.open && state.shoppingCustomers >= state.maxCustomers) {
+			state.customersMissed += 1;		
+		}
+		
 	}
 }
