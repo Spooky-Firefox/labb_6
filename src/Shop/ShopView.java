@@ -13,6 +13,13 @@ public class ShopView extends View {
 
 	// TODO: columns might need adjusting, using \t tabs in the strings.
 	// This whole file is a fucking mess.
+	private String pad12(String string){
+		String out = string;
+		for (int i = string.length(); i < 12; i++) {
+			out = out+" ";
+		}
+		return out;
+	}
 
 	private void printStart(ShopState state) {
 		System.out.println("PARAMETRAR\n==========");
@@ -52,8 +59,8 @@ public class ShopView extends View {
 
 	private void printEvent(ShopState state, ShopEvent event) {
 		// It's gonna be a big one..
-		System.out.printf("%s\t%s\t\t%s\t\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t\t%.2f\t%d\t%s\n",
-			event.prettyStartTime(),event,event.prettyCustomer(),  // time event-name customerNr
+		System.out.printf("%s\t%s%s\t\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t\t%.2f\t%d\t%s\n",
+			event.prettyStartTime(),pad12(event.toString()),event.prettyCustomer(),  // time event-name customerNr
 			state.prettyOpen(),state.checkoutQueue.noFree(),state.timeEmptyCheckouts, // open, freecheakouts, time empty cheakouts
 			state.shoppingCustomers,state.customersPayed,state.customersMissed, state.customersWaited,
 			state.timeWaitingCustomers, state.checkoutQueue.size(),state.checkoutQueue.toString()
