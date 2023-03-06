@@ -16,7 +16,7 @@ public class EventStart extends ShopEvent {
 	@Override
 	public void execute(ShopState state) {
 		int custumerNumber = state.customers.newCustomer();
-		EventArrival arrival = new EventArrival(state.newArrivalTime(), super.getQueue(), custumerNumber);
+		EventArrival arrival = new EventArrival(this.getStartTime() + state.newArrivalTime(), super.getQueue(), custumerNumber);
 		super.getQueue().addEvent(arrival);
 	}
 }

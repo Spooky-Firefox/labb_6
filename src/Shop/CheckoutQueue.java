@@ -4,10 +4,20 @@ import java.util.ArrayList;
 
 public class CheckoutQueue {
 	private ArrayList<Integer> customers;
+	private int maxCheckouts;
+	private int freeCheckouts;
 
-	public CheckoutQueue() {
+	public CheckoutQueue(int maxCheckouts) {
 		// TODO: add max checkouts from state, so can measure free checkouts
-		customers = new ArrayList<>();
+		this.freeCheckouts = maxCheckouts;
+		this.maxCheckouts = maxCheckouts;
+		this.customers = new ArrayList<>();
+	}
+	public void makeFreeCheckout() {
+		this.freeCheckouts++;
+	}
+	public void useCheckout() {
+		this.freeCheckouts--;
 	}
 
 	public void addCustomer(int customersNumber) {
@@ -16,6 +26,7 @@ public class CheckoutQueue {
 
 	public int nextCustomer() {
 		return this.customers.remove(0);
+
 	}
 
 	public boolean hasNext() {
@@ -27,8 +38,7 @@ public class CheckoutQueue {
 	}
 
 	public int noFree() {
-		// TODO: number of free checkouts
-		return -1;
+		return this.freeCheckouts;
 	}
 
 	public boolean hasFree() {

@@ -21,8 +21,9 @@ public class EventPick extends ShopEvent {
 	public void execute(ShopState state) {
 		if (state.checkoutQueue.hasFree()) {
 			EventPayment payment = new EventPayment(
-			super.getStartTime() + state.newPickTime(), super.getQueue());
+					super.getStartTime() + state.newPaymentTime(), super.getQueue());
 			super.getQueue().addEvent(payment);
+			state.checkoutQueue.useCheckout();
 		}
 		else {
 			state.checkoutQueue.addCustomer(this.getCustomer());

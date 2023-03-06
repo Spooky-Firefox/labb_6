@@ -19,5 +19,18 @@ public class EventPayment extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
+		state.shoppingCustomers--;
+		state.customersPayed++;
+		if(state.checkoutQueue.hasNext()) {
+			state.checkoutQueue.nextCustomer();
+			EventPayment payment = new EventPayment(
+					super.getStartTime() + state.newPaymentTime(), super.getQueue());
+			super.getQueue().addEvent(payment);
+			state.checkoutQueue.useCheckout();
+		}
+		else {
+			state.checkoutQueue.makeFreeCheckout();
+		}
+		
 	}
 }
