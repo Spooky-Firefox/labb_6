@@ -13,10 +13,12 @@ public class CheckoutQueue {
 		this.maxCheckouts = maxCheckouts;
 		this.customers = new ArrayList<>();
 	}
+	public void useCheckout() {
+		this.freeCheckouts--;
+	}
 
 	public void addCustomer(int customersNumber) {
 		this.customers.add(customersNumber);
-		this.freeCheckouts--;
 	}
 
 	public int nextCustomer() {
