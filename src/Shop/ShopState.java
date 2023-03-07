@@ -21,14 +21,14 @@ public class ShopState extends State {
 	final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5
-	int customersWaited;
-	int customersPayed;
-	int customersMissed;
-	double timeEmptyCheckouts;
-	double timeWaitingCustomers;
+	int customersShopping = 0;
+	int customersWaited = 0;
+	int customersPayed = 0;
+	int customersMissed = 0;
+	double timeEmptyCheckouts = 0;
+	double timeWaitingCustomers = 0;
 
 	// Extra, custom runtime instances
-	int shoppingCustomers;
 	boolean open = true;
 	CustomerFactory customers = new CustomerFactory();
 	CheckoutQueue checkoutQueue;
@@ -38,18 +38,10 @@ public class ShopState extends State {
 
 	public ShopState(
 			int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
-			double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
-
+			double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed
+	) {
 		this.openCheckouts = openCheckouts;
-		this.timeEmptyCheckouts = 0;
-		this.timeWaitingCustomers = 0;
-
 		this.maxCustomers = maxCustomers;
-		this.shoppingCustomers = 0;
-		this.customersWaited = 0;
-		this.customersPayed = 0;
-		this.customersMissed = 0;
-
 		this.arrivalTime = arrivalTime;
 		this.pickTimeMin = pickTimeMin;
 		this.pickTimeMax = pickTimeMax;
@@ -63,11 +55,13 @@ public class ShopState extends State {
 
 	}
 	public void updateStatistics(){
-		if(this.open || this.shoppingCustomers > 0) {
+		if(this.open || this.customersShopping > 0) {
 			// sum of total time in checkout queue
-			this.timeWaitingCustomers = this.timeWaitingCustomers + this.checkoutQueue.size() * this.deltaTime;
+			this.timeWaitingCustomers = this.timeWaitingCustomers +
+				this.checkoutQueue.size() * this.deltaTime;
 			// sum of time of empty checkouts
-			this.timeEmptyCheckouts = this.timeEmptyCheckouts + this.checkoutQueue.noFree() * this.deltaTime;
+			this.timeEmptyCheckouts = this.timeEmptyCheckouts +
+				this.checkoutQueue.noFree() * this.deltaTime;
 		}
 	}
 

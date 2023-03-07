@@ -15,7 +15,7 @@ public class EventPayment extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		state.shoppingCustomers--;
+		state.customersShopping--;
 		state.customersPayed++;
 		// customer is done, free checkout
 		state.checkoutQueue.makeFreeCheckout();

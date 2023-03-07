@@ -24,9 +24,9 @@ public class EventArrival extends ShopEvent {
 			super.getQueue().addEvent(Arrival);
 
 			// if store is not full create a pick event
-			if(state.shoppingCustomers < state.maxCustomers) {
+			if(state.customersShopping < state.maxCustomers) {
 
-				state.shoppingCustomers += 1;
+				state.customersShopping += 1;
 
 				EventPick pick = new EventPick(this.getStartTime() +
 				state.newPickTime(), super.getQueue(),this.customer);
