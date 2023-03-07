@@ -7,6 +7,7 @@ import java.util.Observable;
  * with variables like current time
  *
  * State is Observable
+ * @author Olle Ronstad
  */
 public class State extends Observable {
 	private boolean stopSimulation;
