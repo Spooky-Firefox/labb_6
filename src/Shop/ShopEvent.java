@@ -31,8 +31,11 @@ public abstract class ShopEvent extends Event {
 	final public void execute(State state) {
 		// TODO: ensure it's really a ShopState?
 		ShopState st = (ShopState) state;
+		// Have to update time before updating stats
+		state.setTime(this.getStartTime());
 		st.updateStatistics();
-		super.execute(state);
+		// and can only print output after stats was updated
+		state.notifyView(this);
 		this.execute(st);
 	}
 
