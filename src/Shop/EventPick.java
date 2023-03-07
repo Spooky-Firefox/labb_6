@@ -24,7 +24,7 @@ public class EventPick extends ShopEvent {
 		// else, decrease free counters -1 and add payment event
 		state.checkoutQueue.useCheckout();
 		EventPayment payment = new EventPayment(
-			super.getStartTime() + state.newPaymentTime(), super.getQueue(), this.customer
+			this.getStartTime() + state.newPaymentTime(), super.getQueue(), this.customer
 		);
 		super.getQueue().addEvent(payment);
 	}

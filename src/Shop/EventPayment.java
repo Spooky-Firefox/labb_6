@@ -15,21 +15,20 @@ public class EventPayment extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		state.customersShopping--;
 		state.customersPayed++;
-		// customer is done, free checkout
-		state.checkoutQueue.makeFreeCheckout();
+		state.customersShopping--;
 
-		// if there are more customer occupy checkout with new customer
-		if(state.checkoutQueue.hasNext()) {
-			state.checkoutQueue.nextCustomer();
-			EventPayment payment = new EventPayment(
-					super.getStartTime() + state.newPaymentTime(), super.getQueue(),this.customer);
-			super.getQueue().addEvent(payment);
-			state.checkoutQueue.useCheckout();
-		}
-		else {
+		// if checkoutqueue is empty, free up a counter
+		if (state.checkoutQueue.hasNext() == false) {
 			state.checkoutQueue.makeFreeCheckout();
+			return;
 		}
+
+		// else, pick next waiting customer and add new payment event
+		int customer = state.checkoutQueue.nextCustomer();
+		EventPayment payment = new EventPayment(
+			this.getStartTime() + state.newPaymentTime(), super.getQueue(), customer
+		);
+		super.getQueue().addEvent(payment);
 	}
 }
