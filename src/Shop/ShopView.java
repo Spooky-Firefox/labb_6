@@ -56,7 +56,7 @@ public class ShopView extends View {
 			"3) Total tid " + state.checkoutQueue.queuedOnce() + " kunder tvingats koa: " +
 			prettyDecimal(state.timeWaitingCustomers) + " te."
 		);
-		System.out.println("   Genomsnittlig kotid: " + state.timeWaitingCustomers/state.customersWaited + " te.");
+		System.out.printf("   Genomsnittlig kotid: %.2f te.\n",state.timeWaitingCustomers/state.customersWaited);
 	}
 
 	private void printEvent(ShopState state, ShopEvent event) {
