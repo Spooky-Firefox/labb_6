@@ -11,31 +11,31 @@ public class ShopState extends State {
 	// Shop parameters, from pg. 5 (comment number equals parameter on that page):
 	// - using public keyword so that
 	// - but locked to single declaration (using the "final" keyword)
-	final int openCheckouts; // 1
-	final int maxCustomers; // 2
-	final double arrivalTime; // 3
-	final double paymentTimeMin, paymentTimeMax; // 4
-	final double pickTimeMin, pickTimeMax; // 5
+	public final int openCheckouts; // 1
+	public final int maxCustomers; // 2
+	public final double arrivalTime; // 3
+	public final double paymentTimeMin, paymentTimeMax; // 4
+	public final double pickTimeMin, pickTimeMax; // 5
 	// TODO: seems unneccesary since opening time is set using the stop event???
 	// final double openTime; // 6
-	final long rngSeed; // 7
+	public final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5
-	int customersShopping = 0;
-	int customersWaited = 0;
-	int customersPayed = 0;
-	int customersMissed = 0;
-	double timeEmptyCheckouts = 0;
-	double timeWaitingCustomers = 0;
-	double lastPay = 0;
+	public int customersShopping = 0;
+	public int customersWaited = 0;
+	public int customersPayed = 0;
+	public int customersMissed = 0;
+	public double timeEmptyCheckouts = 0;
+	public double timeWaitingCustomers = 0;
+	public double lastPay = 0;
 
 	// Extra, custom runtime instances
-	boolean open = true;
-	CustomerFactory customers = new CustomerFactory();
-	CheckoutQueue checkoutQueue;
-	ExponentialRandomStream arrivalRNG;
-	UniformRandomStream pickRNG;
-	UniformRandomStream paymentRNG;
+	public boolean open = true;
+	public CustomerFactory customers = new CustomerFactory();
+	public CheckoutQueue checkoutQueue;
+	public ExponentialRandomStream arrivalRNG;
+	public UniformRandomStream pickRNG;
+	public UniformRandomStream paymentRNG;
 
 	public ShopState(
 			int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
