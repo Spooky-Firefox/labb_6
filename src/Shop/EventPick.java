@@ -16,8 +16,10 @@ public class EventPick extends ShopEvent {
 	@Override
 	public void execute(ShopState state) {
 		// If no free counters, add customer to queue
+		// and increase customersWaited with one
 		if (state.checkoutQueue.hasFree() == false) {
 			state.checkoutQueue.addCustomer(this.customer);
+			state.customersWaited++;
 			return;
 		}
 
