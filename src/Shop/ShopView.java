@@ -85,10 +85,10 @@ public class ShopView extends View {
 				printStart(state);
 				// using format "%9s" the event name will be padded with whitespaces
 				// 'till it's 9 letters long (and right justified).
-				System.out.format("%s %9s\n", event.prettyStartTime(), event);
+				System.out.println(event.prettyStartTime() + " " + event.prettyName());
 				break;
 			case "class Controller.StopSim":
-				System.out.format("%s %9s\n", event.prettyStartTime(), event);
+				System.out.println(event.prettyStartTime() + " " + event.prettyName());
 				printStop(state);
 				break;
 			case "class Shop.EventArrival", "class Shop.EventPick",

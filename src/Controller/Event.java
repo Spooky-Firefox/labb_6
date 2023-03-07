@@ -19,6 +19,12 @@ public abstract class Event {
 		return String.format("%6.2f", this.startTime);
 	}
 
+	public String prettyName() {
+		// Left padd the string until it's 9 letters long
+		// (9 is the size of the longest event name Betalning)
+		return String.format("%9s", this.toString());
+	}
+
 	public EventQueue getQueue() {
 		return queue;
 	}

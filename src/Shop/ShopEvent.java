@@ -21,12 +21,6 @@ public abstract class ShopEvent extends Event {
 		return String.format("%2d", this.customer);
 	}
 
-	public String prettyName() {
-		// Left padd the string until it's 9 letters long
-		// (9 is the size of the longest event name Betalning)
-		return String.format("%9s", this.toString());
-	}
-
 	@Override
 	final public void execute(State state) {
 		// TODO: ensure it's really a ShopState?
