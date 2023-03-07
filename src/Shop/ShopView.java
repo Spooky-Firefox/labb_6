@@ -35,8 +35,8 @@ public class ShopView extends View {
 	private void printStop(ShopState state) {
 		System.out.println("\nRESULTAT\n========\n");
 		System.out.println(
-			"1) Av " + state.maxCustomers + " kunder handlade " + state.customersPayed +
-			" medan " + state.customersMissed + " missades.\n"
+			"1) Av " + state.customers.total() + " kunder handlade " +
+			state.customersPayed + " medan " + state.customersMissed + " missades.\n"
 		);
 		// Yeah no, no idea what kind of unit te is..
 		System.out.println(

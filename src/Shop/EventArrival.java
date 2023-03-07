@@ -22,7 +22,7 @@ public class EventArrival extends ShopEvent {
 		}
 
 		// always add new arrival event when shop is open
-		int customer = state.customers.newCustomer();
+		int customer = state.customers.create();
 		EventArrival Arrival = new EventArrival(this.getStartTime() +
 			state.newArrivalTime(), super.getQueue(), customer
 		);
