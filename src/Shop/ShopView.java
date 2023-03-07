@@ -30,7 +30,6 @@ public class ShopView extends View {
 		// or ur going to break shit for everyone else!
 		System.out.println("Fro, f...................: " + state.rngSeed);
 		System.out.println("\nFORLOPP\n=======");
-		// TODO: might need column adjustments...
 		System.out.println(
 			"Tid\tHandelse Kund\t?\tled\tledT\tI\t$\t:-(\tkoat\tkoT\tkoar\t[Kassako..]"
 		);

@@ -11,7 +11,6 @@ public class CheckoutQueue {
 	private int freeCheckouts;
 
 	public CheckoutQueue(int maxCheckouts) {
-		// TODO: add max checkouts from state, so can measure free checkouts
 		this.freeCheckouts = maxCheckouts;
 		this.maxCheckouts = maxCheckouts;
 		this.customerQueue = new ArrayList<>();

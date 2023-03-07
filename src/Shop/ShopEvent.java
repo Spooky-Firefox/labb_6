@@ -23,7 +23,6 @@ public abstract class ShopEvent extends Event {
 
 	@Override
 	final public void execute(State state) {
-		// TODO: ensure it's really a ShopState?
 		ShopState st = (ShopState) state;
 		// Have to update time before updating stats
 		state.setTime(this.getStartTime());
