@@ -59,7 +59,7 @@ public class ShopState extends State {
 		if(this.open || this.customersShopping > 0) {
 			// sum of total time in checkout queue
 			this.timeWaitingCustomers = this.timeWaitingCustomers +
-				this.checkoutQueue.size() * this.deltaTime;
+				this.checkoutQueue.queuedCurrent() * this.deltaTime;
 			// sum of time of empty checkouts
 			this.timeEmptyCheckouts = this.timeEmptyCheckouts +
 				this.checkoutQueue.amountFree() * this.deltaTime;

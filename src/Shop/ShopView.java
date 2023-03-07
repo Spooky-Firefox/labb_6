@@ -13,6 +13,10 @@ public class ShopView extends View {
 		super(state);
 	}
 
+	private String prettyDecimal(double value) {
+		return String.format("%.2f", value);
+	}
+
 	private void printStart(ShopState state) {
 		System.out.println("PARAMETRAR\n==========");
 		System.out.println("Antal kassor, N..........: " + state.openCheckouts);
@@ -41,7 +45,7 @@ public class ShopView extends View {
 		// Yeah no, no idea what kind of unit te is..
 		System.out.println(
 			"2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
-			state.timeEmptyCheckouts + " te."
+			prettyDecimal(state.timeEmptyCheckouts) + " te."
 		);
 		// TODO: STAT VARS for these last lines!
 		System.out.println(
@@ -49,7 +53,8 @@ public class ShopView extends View {
 			"% av tiden fran oppning tills sista kunden betalat).\n"
 		);
 		System.out.println(
-			"3) Total tid " + state.maxCustomers + " kunder tvingats koa: " + 0 + " te."
+			"3) Total tid " + state.checkoutQueue.queuedOnce() + " kunder tvingats koa: " +
+			prettyDecimal(state.timeWaitingCustomers) + " te."
 		);
 		System.out.println("   Genomsnittlig kotid: " + 0 + " te.");
 	}
@@ -60,8 +65,8 @@ public class ShopView extends View {
 			event.prettyStartTime(),event.prettyName(),event.prettyCustomer(),
 			state.prettyOpen(),state.checkoutQueue.amountFree(),state.timeEmptyCheckouts,
 			state.customersShopping,state.customersPayed,state.customersMissed,
-			state.customersWaited, state.timeWaitingCustomers, state.checkoutQueue.size(),
-			state.checkoutQueue.toString()
+			state.customersWaited, state.timeWaitingCustomers,
+			state.checkoutQueue.queuedCurrent(), state.checkoutQueue.toString()
 		);
 	}
 
