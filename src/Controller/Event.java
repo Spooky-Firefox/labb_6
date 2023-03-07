@@ -25,6 +25,6 @@ public abstract class Event {
 
 	public void execute(State state) {
 		state.setTime(this.getStartTime());
-		state.notify(this);
+		state.notifyView(this);
 	}
 }

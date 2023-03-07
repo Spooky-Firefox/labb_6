@@ -7,7 +7,7 @@ public class State extends Observable {
 	protected double currentTime;
 
 	// Notify any observers (for example View or ShopView)
-	public void notify(Event ev) {
+	public void notifyView(Event ev) {
 		this.setChanged();
 		this.notifyObservers(ev);
 	}

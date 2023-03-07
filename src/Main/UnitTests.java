@@ -24,7 +24,7 @@ public class UnitTests{
 
 	private static void runEvent(State st, Event ev) {
 		// Stolen from Simulator.runLoop()
-		st.notify(ev);
+		st.notifyView(ev);
 		st.setTime(ev.getStartTime());
 		ev.execute(st);
 		assert st.getTime() == ev.getStartTime();
