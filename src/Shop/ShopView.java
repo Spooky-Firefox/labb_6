@@ -47,11 +47,10 @@ public class ShopView extends View {
 			"2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
 			prettyDecimal(state.timeEmptyCheckouts) + " te."
 		);
-		// TODO: STAT VARS for these last lines!
-		System.out.println(
-			"   Genomsnittlig ledig kassatid: " + 0 + " (dvs " + 0 +
-			"% av tiden fran oppning tills sista kunden betalat).\n"
-		);
+		double avgFreeCheckoutTime = state.timeEmptyCheckouts/state.openCheckouts;
+		System.out.printf(
+			"   Genomsnittlig ledig kassatid: %.2f (dvs %.2f%% av tiden fran oppning tills sista kunden betalat).\n\n",
+			avgFreeCheckoutTime, (avgFreeCheckoutTime*100)/state.lastPay);
 		System.out.println(
 			"3) Total tid " + state.checkoutQueue.queuedOnce() + " kunder tvingats koa: " +
 			prettyDecimal(state.timeWaitingCustomers) + " te."

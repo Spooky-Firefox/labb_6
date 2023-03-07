@@ -27,6 +27,7 @@ public class ShopState extends State {
 	int customersMissed = 0;
 	double timeEmptyCheckouts = 0;
 	double timeWaitingCustomers = 0;
+	double lastPay = 0;
 
 	// Extra, custom runtime instances
 	boolean open = true;
