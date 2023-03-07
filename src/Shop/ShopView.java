@@ -6,19 +6,11 @@ import Controller.State;
 import Controller.View;
 import Controller.Event;
 
+// This whole file is a fucking mess.
+
 public class ShopView extends View {
 	public ShopView(State state) {
 		super(state);
-	}
-
-	// TODO: columns might need adjusting, using \t tabs in the strings.
-	// This whole file is a fucking mess.
-	private String pad12(String string){
-		String out = string;
-		for (int i = string.length(); i < 12; i++) {
-			out = out+" ";
-		}
-		return out;
 	}
 
 	private void printStart(ShopState state) {
@@ -35,36 +27,42 @@ public class ShopView extends View {
 		System.out.println("Fro, f...................: " + state.rngSeed);
 		System.out.println("\nFORLOPP\n=======");
 		// TODO: might need column adjustments...
-		System.out.println("Tid\t\tHandelse\tKund\t?\tled\tledT\tI\t$\t:-(\tkoat\tkoT\t\tkoar [Kassako..]");
+		System.out.println(
+			"Tid\tHandelse Kund\t?\tled\tledT\tI\t$\t:-(\tkoat\tkoT\tkoar\t[Kassako..]"
+		);
 	}
 
 	private void printStop(ShopState state) {
 		System.out.println("\nRESULTAT\n========\n");
-		System.out.println("1) Av " + state.maxCustomers + " kunder handlade " +
-			state.customersPayed + " medan " +
-			state.customersMissed + " missades.\n");
-
-		System.out.println("2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
-			state.timeEmptyCheckouts + " te.");
+		System.out.println(
+			"1) Av " + state.maxCustomers + " kunder handlade " + state.customersPayed +
+			" medan " + state.customersMissed + " missades.\n"
+		);
 		// Yeah no, no idea what kind of unit te is..
-
+		System.out.println(
+			"2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
+			state.timeEmptyCheckouts + " te."
+		);
 		// TODO: STAT VARS for these last lines!
-		System.out.println("   Genomsnittlig ledig kassatid: " + 0 +
-			" (dvs " + 0 + "% av tiden fran oppning tills sista kunden betalat).\n");
-
-		System.out.println("3) Total tid " + state.maxCustomers + " kunder tvingats koa: " +
-			0 + " te.");
+		System.out.println(
+			"   Genomsnittlig ledig kassatid: " + 0 + " (dvs " + 0 +
+			"% av tiden fran oppning tills sista kunden betalat).\n"
+		);
+		System.out.println(
+			"3) Total tid " + state.maxCustomers + " kunder tvingats koa: " + 0 + " te."
+		);
 		System.out.println("   Genomsnittlig kotid: " + 0 + " te.");
 	}
 
 	private void printEvent(ShopState state, ShopEvent event) {
 		// It's gonna be a big one..
-		System.out.printf("%s\t%s%s\t\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t\t%.2f\t%d\t%s\n",
-			event.prettyStartTime(),pad12(event.toString()),event.prettyCustomer(),  // time event-name customerNr
-			state.prettyOpen(),state.checkoutQueue.noFree(),state.timeEmptyCheckouts, // open, freecheakouts, time empty cheakouts
-			state.shoppingCustomers,state.customersPayed,state.customersMissed, state.customersWaited,
-			state.timeWaitingCustomers, state.checkoutQueue.size(),state.checkoutQueue.toString()
-			);
+		System.out.printf("%s %s %s\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t%.2f\t%d\t%s\n",
+			event.prettyStartTime(),event.prettyName(),event.prettyCustomer(),
+			state.prettyOpen(),state.checkoutQueue.noFree(),state.timeEmptyCheckouts,
+			state.shoppingCustomers,state.customersPayed,state.customersMissed,
+			state.customersWaited, state.timeWaitingCustomers, state.checkoutQueue.size(),
+			state.checkoutQueue.toString()
+		);
 	}
 
 	@Override
@@ -80,10 +78,12 @@ public class ShopView extends View {
 		switch (type) {
 			case "class Shop.EventStart":
 				printStart(state);
-				System.out.println(event.prettyStartTime() + "  " + event);
+				// using format "%9s" the event name will be padded with whitespaces
+				// 'till it's 9 letters long (and right justified).
+				System.out.format("%s %9s\n", event.prettyStartTime(), event);
 				break;
 			case "class Controller.StopSim":
-				System.out.println(event.prettyStartTime() + "  " + event);
+				System.out.format("%s %9s\n", event.prettyStartTime(), event);
 				printStop(state);
 				break;
 			case "class Shop.EventArrival", "class Shop.EventPick",
