@@ -23,5 +23,8 @@ public abstract class Event {
 		return queue;
 	}
 
-	public abstract void execute(State state);
+	public void execute(State state) {
+		state.setTime(this.getStartTime());
+		state.notify(this);
+	}
 }

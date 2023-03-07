@@ -16,10 +16,7 @@ public class Simulator {
 				System.out.println("Simulation: STOPPED");
 				return;
 			}
-
-			Event currentEvent = events.nextEvent();
-			state.setTime(currentEvent.getStartTime());
-			currentEvent.execute(state);
+			events.nextEvent().execute(state);
 		}
 	}
 }

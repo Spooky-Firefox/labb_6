@@ -9,8 +9,8 @@ public class StopSim extends Event {
 		return "Stop";
 	}
 
-	@Override
 	public void execute(State state) {
+		super.execute(state);
 		state.stop();
 	}
 }

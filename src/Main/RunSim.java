@@ -26,7 +26,7 @@ public class RunSim {
 		// Adds initial events
 		Event eventStart = new EventStart(0, eventQueue);
 		eventQueue.addEvent(eventStart);
-		Event stopSim = new ShopStop(999, eventQueue);
+		Event stopSim = new StopSim(999, eventQueue);
 		eventQueue.addEvent(stopSim);
 		Event eventClose = new EventClosing(10, eventQueue);
 		eventQueue.addEvent(eventClose);

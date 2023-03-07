@@ -9,8 +9,7 @@ public class StartSim extends Event {
 		return "Start";
 	}
 
-	@Override
 	public void execute(State state) {
-		// Do nothing
+		super.execute(state);
 	}
 }
