@@ -13,11 +13,17 @@ public class CheckoutQueue {
 		this.maxCheckouts = maxCheckouts;
 		this.customers = new ArrayList<>();
 	}
+
+	public void useCheckout() {
+		this.freeCheckouts--;
+	}
+
 	public void makeFreeCheckout() {
 		this.freeCheckouts++;
 	}
-	public void useCheckout() {
-		this.freeCheckouts--;
+
+	public int amountFree() {
+		return this.freeCheckouts;
 	}
 
 	public void addCustomer(int customersNumber) {
@@ -35,10 +41,6 @@ public class CheckoutQueue {
 
 	public int size() {
 		return customers.size();
-	}
-
-	public int amountFree() {
-		return this.freeCheckouts;
 	}
 
 	public boolean hasFree() {
