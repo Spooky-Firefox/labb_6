@@ -16,27 +16,29 @@ public class EventArrival extends ShopEvent {
 
 	@Override
 	public void execute(ShopState state) {
-		// if store is open create new arrival
-		if (state.open){
-			int custumerNumber = state.customers.newCustomer();
-			EventArrival Arrival = new EventArrival(this.getStartTime() +
-					state.newArrivalTime(), super.getQueue(), custumerNumber);
-			super.getQueue().addEvent(Arrival);
-
-			// if store is not full create a pick event
-			if(state.customersShopping < state.maxCustomers) {
-
-				state.customersShopping += 1;
-
-				EventPick pick = new EventPick(this.getStartTime() +
-				state.newPickTime(), super.getQueue(),this.customer);
-				super.getQueue().addEvent(pick);
-			}
-			// if the store is full increase missed customers
-			else {
-				state.customersMissed += 1;
-		}
+		// if not open, don't let customer in and don't count it as missed
+		if (state.open == false) {
+			return;
 		}
 
+		// always add new arrival event when shop is open
+		int customer = state.customers.newCustomer();
+		EventArrival Arrival = new EventArrival(this.getStartTime() +
+			state.newArrivalTime(), super.getQueue(), customer
+		);
+		super.getQueue().addEvent(Arrival);
+
+		// if shop is open but full, add missed customer and do nothing else
+		if (state.customersShopping >= state.maxCustomers) {
+			state.customersMissed++;
+			return;
+		}
+
+		// if shop is open and has space, add shopping customer and pick event
+		state.customersShopping++;
+		EventPick pick = new EventPick(
+			this.getStartTime() + state.newPickTime(), super.getQueue(), this.customer
+		);
+		super.getQueue().addEvent(pick);
 	}
 }
