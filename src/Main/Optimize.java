@@ -1,21 +1,20 @@
 package Main;
 
-import Controller.Event;
-import Controller.EventQueue;
-import Controller.Simulator;
-import Controller.StopSim;
+import Controller.*;
 import Shop.EventClosing;
 import Shop.EventStart;
 import Shop.ShopState;
 
+import java.util.Random;
+
 public class Optimize {
-	private ShopState runOneSim( // method one
-			int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
-			double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
+	private static ShopState runOneSim( // method one
+								 int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
+								 double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
 		// Sets up initial instances
 		ShopState shopState = new ShopState(
-				openCheckouts, maxCustomers,arrivalTime,pickTimeMin,pickTimeMax,
-				paymentTimeMin,paymentTimeMax,rngSeed);
+				openCheckouts, maxCustomers, arrivalTime, pickTimeMin, pickTimeMax,
+				paymentTimeMin, paymentTimeMax, rngSeed);
 		EventQueue eventQueue = new EventQueue(shopState);
 
 		// Adds initial events
@@ -33,27 +32,56 @@ public class Optimize {
 		return shopState;
 	}
 
-	private int testSeed( // method two
-		  int maxCustomers, double arrivalTime, double pickTimeMin,
-		  double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
+	private static int findMinCheckoutFromSeed( // method two
+										 int maxCustomers, double arrivalTime, double pickTimeMin,
+										 double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long rngSeed) {
 		// TODO: make binary search
 
 
 		// if we have a Checkout for each customer, it doesn't help with more
-		int maxCheakouts = maxCustomers;
-		int minCheakouts = maxCustomers;
-		int missedCustomers = Integer.MAX_VALUE;
-		for (int i = 1; i <= maxCheakouts ; i++) {
+		int maxCheckouts = maxCustomers;
+		int minCheckouts = maxCustomers;
+		int minMissedCustomers = Integer.MAX_VALUE;
+		for (int i = maxCheckouts; i >0; i--) {
 			ShopState state = runOneSim(
-				i, maxCustomers, arrivalTime, pickTimeMin, pickTimeMax, paymentTimeMin, paymentTimeMax, rngSeed);
-			if (state.customersMissed < missedCustomers){
-				minCheakouts = i;
+					i, maxCustomers, arrivalTime, pickTimeMin, pickTimeMax, paymentTimeMin, paymentTimeMax, rngSeed);
+//			System.out.println("\n\n");
+//			System.out.println("checkouts "+state.openCheckouts);
+//			System.out.println("missed "+state.customersMissed);
+			if (state.customersMissed <= minMissedCustomers) {
+				minMissedCustomers = state.customersMissed;
+				minCheckouts = i;
 			}
 		}
-
-		return minCheakouts;
+//		System.out.println("minMissed "+minMissedCustomers);
+		return minCheckouts;
 	}
 
+	private static int findMinCheckout( // method tre
+								 int maxCustomers, double arrivalTime, double pickTimeMin,
+								 double pickTimeMax, double paymentTimeMin, double paymentTimeMax, long sourceRand) {
+		Random rand = new Random(sourceRand);
+
+		int maxCheckouts = 0;
+		int stepsSinceChange = 0;
+		while (stepsSinceChange <= 100) {
+			int minCheckouts = findMinCheckoutFromSeed(
+					maxCustomers, arrivalTime, pickTimeMin, pickTimeMax,
+					paymentTimeMin, paymentTimeMax, rand.nextLong());
+			if (minCheckouts > maxCheckouts){
+				maxCheckouts = minCheckouts;
+				stepsSinceChange = 0;
+			} else {
+				stepsSinceChange++;
+			}
+		}
+		return maxCheckouts;
+	}
+
+
 	public static void main(String[] args) {
+		System.out.println(findMinCheckout(
+				5,1,0.5,1,
+				2,3,1234));
 	}
 }
