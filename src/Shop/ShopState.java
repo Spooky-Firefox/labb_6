@@ -54,6 +54,7 @@ public class ShopState extends State {
 		this.paymentRNG = new UniformRandomStream(paymentTimeMin, paymentTimeMax, rngSeed);
 
 	}
+
 	public void updateStatistics(){
 		if(this.open || this.customersShopping > 0) {
 			// sum of total time in checkout queue
@@ -61,7 +62,7 @@ public class ShopState extends State {
 				this.checkoutQueue.size() * this.deltaTime;
 			// sum of time of empty checkouts
 			this.timeEmptyCheckouts = this.timeEmptyCheckouts +
-				this.checkoutQueue.noFree() * this.deltaTime;
+				this.checkoutQueue.amountFree() * this.deltaTime;
 		}
 	}
 
@@ -78,12 +79,15 @@ public class ShopState extends State {
 			return "S";
 		}
 	}
+
 	public double newArrivalTime() {
 		return this.arrivalRNG.next();
 	}
+
 	public double newPickTime() {
 		return this.pickRNG.next();
 	}
+
 	public double newPaymentTime() {
 		return this.paymentRNG.next();
 	}

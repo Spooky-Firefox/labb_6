@@ -37,17 +37,13 @@ public class CheckoutQueue {
 		return customers.size();
 	}
 
-	public int noFree() {
+	public int amountFree() {
 		return this.freeCheckouts;
 	}
 
 	public boolean hasFree() {
-		return (this.noFree() > 0);
+		return (this.amountFree() > 0);
 	}
-
-	// public String prettyCheckout() {
-		// return this.checkoutQueue.toString();
-	// }
 
 	@Override
 	public String toString() {
