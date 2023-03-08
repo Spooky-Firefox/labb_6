@@ -4,7 +4,14 @@ import Controller.Event;
 import Controller.EventQueue;
 import Controller.State;
 
+/**
+ * Abstract class that extends Event, used for creating new shop events.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 abstract class ShopEvent extends Event {
+	/**
+	 * Ties a customer to the event.
+	 */
 	protected int customer;
 
 	ShopEvent(double time, EventQueue eventQueue) {
@@ -21,6 +28,10 @@ abstract class ShopEvent extends Event {
 		return String.format("%2d", this.customer);
 	}
 
+	/**
+	 * Overrides the inherited method from Event, which is run by the simulator.
+	 * @param state an instance of State
+	 */
 	@Override
 	final public void execute(State state) {
 		ShopState st = (ShopState) state;

@@ -3,16 +3,28 @@ package Shop;
 import Controller.EventQueue;
 import Controller.State;
 
+/**
+ * Represents a customer paying for picked items.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 class EventPayment extends ShopEvent {
 	EventPayment(double startTime, EventQueue eventQueue, int customer) {
 		super(startTime, eventQueue);
 		this.customer = customer;
 	}
 
+	/**
+	 * Returns The name of the event.
+	 * @return the event name.
+	 */
 	public String toString() {
 		return "Betalning";
 	}
 
+	/**
+	 * Overrides the inherited exec method from Event.
+	 * @param ShopState the current shop state
+	 */
 	@Override
 	public void execute(ShopState state) {
 		state.customersPayed++;

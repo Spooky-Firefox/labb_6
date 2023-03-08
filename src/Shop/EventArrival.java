@@ -3,6 +3,10 @@ package Shop;
 import Controller.EventQueue;
 import Controller.State;
 
+/**
+ * Represents a customer arriving to the shop.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 class EventArrival extends ShopEvent {
 
 	EventArrival(double startTime, EventQueue eventQueue, int customer) {
@@ -10,10 +14,18 @@ class EventArrival extends ShopEvent {
 		this.customer = customer;
 	}
 
+	/**
+	 * Returns The name of the event.
+	 * @return the event name.
+	 */
 	public String toString() {
 		return "Ankomst";
 	}
 
+	/**
+	 * Overrides the inherited exec method from Event.
+	 * @param ShopState the current shop state
+	 */
 	@Override
 	public void execute(ShopState state) {
 		// if not open, don't let customer in and don't count it as missed

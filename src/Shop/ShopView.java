@@ -8,11 +8,27 @@ import Controller.Event;
 
 // This whole file is a fucking mess.
 
+/**
+ * ShopView extends the public View class and prints out params, events and stats from
+ * simulating a shop using this package.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 public class ShopView extends View {
+
+	/**
+	 * Constructor.
+	 * @param state an instance of the public State class.
+	 */
 	public ShopView(State state) {
 		super(state);
 	}
 
+	/**
+	 * update is called using the observer pattern (and thus has to be public)
+	 * everytime we want to print a shop event that's currently running.
+	 * @param obs instance of State
+	 * @param obj instance of currently running event
+	 */
 	@Override
 	public void update(Observable obs, Object obj) {
 		// obs: a ShopState instance

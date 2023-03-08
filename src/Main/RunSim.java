@@ -3,7 +3,18 @@ package Main;
 import Shop.*;
 import Controller.*;
 
+/**
+ * Class to run a simulation of a shop.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 public class RunSim {
+
+	/**
+	 * Main method run when executing program.
+	 * It creates a ShopState and ShopView which represents a shop and prints shop stats.
+	 * EventQueue and Simulator is also created to run the simulated shop.
+	 * @param args a String array of program arguments
+	 */
 	public static void main(String[] args){
 		// Parameters from first example
 		int openCheckouts = 2;

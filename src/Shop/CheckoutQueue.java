@@ -2,6 +2,10 @@ package Shop;
 
 import java.util.ArrayList;
 
+/**
+ * Tracks the payment queue at the shop's checkout.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 class CheckoutQueue {
 	// This list represents the current payment queue
 	private ArrayList<Integer> customerQueue;
@@ -58,6 +62,10 @@ class CheckoutQueue {
 		return this.customerQueuedOnce.size();
 	}
 
+	/**
+	 * Returns a string representation of the checkout queue.
+	 * @return the checkout queue.
+	 */
 	@Override
 	public String toString() {
 		return this.customerQueue.toString();

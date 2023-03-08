@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A class that keeps track of the upcoming events
- * @author Olle Ronstad
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
  */
 public class EventQueue {
 	ArrayList<Event> list;

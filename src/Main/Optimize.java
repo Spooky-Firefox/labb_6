@@ -7,7 +7,18 @@ import Shop.EventClosing;
 
 import java.util.Random;
 
+/**
+ * Class to find optimal amount of free checkout counters for a simulated shop.
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
+ */
 public class Optimize {
+	/**
+	 * Main method run when executing program.
+	 * @param args a String array of program arguments
+	 */
+	public static void main(String[] args) {
+		System.out.println(findMinCheckout(5,1,0.5,1,2,3,1234));
+	}
 
 	// Method one: run one simulation with fixed params, but don't print output and
 	// return end state.
@@ -83,9 +94,5 @@ public class Optimize {
 			}
 		}
 		return maxCheckouts;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(findMinCheckout(5,1,0.5,1,2,3,1234));
 	}
 }

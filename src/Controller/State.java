@@ -7,13 +7,22 @@ import java.util.Observable;
  * with variables like current time
  *
  * State is Observable
- * @author Olle Ronstad
+ * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
  */
 public class State extends Observable {
-	private boolean stopSimulation;
+	/**
+	 * Tracks the current time in the simulation.
+	 */
 	protected double currentTime;
+	private boolean stopSimulation;
 
-	// Notify any observers (for example View or ShopView)
+	/**
+	 * Constructor.
+	 */
+	public State() {
+		this.currentTime = 0;
+		this.stopSimulation = false;
+	}
 
 	/**
 	 * Notify any observers (for example View or ShopView) with the given envent
