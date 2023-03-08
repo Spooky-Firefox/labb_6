@@ -31,7 +31,7 @@ public abstract class Event {
 	}
 
 	/**
-	 * Returns a the start time but nicely formatted, suitable for output.
+	 * Returns the start time but nicely formatted, suitable for output.
 	 * @return the start time but string formatted
 	 */
 	public String prettyStartTime() {
@@ -45,7 +45,7 @@ public abstract class Event {
 	 * @return formatted name of event
 	 */
 	public String prettyName() {
-		// Left padd the string until it's 9 letters long
+		// Left pad the string until it's 9 letters long
 		// (9 is the size of the longest event name Betalning)
 		return String.format("%9s", this.toString());
 	}

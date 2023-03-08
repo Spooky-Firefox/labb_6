@@ -7,8 +7,8 @@ package Main;
 
 // public class UnitTests{
 
-	// private static int STARTTIME = 0;
-	// private static int STOPTIME = 999;
+	// private static int START_TIME = 0;
+	// private static int STOP_TIME = 999;
 
 	// // Must be a static class or there's going to be an error in main().
 	// private static class TestView extends View {
@@ -43,7 +43,7 @@ package Main;
 		// assert evq.hasNext() == false;
 
 		// // StartSim test
-		// StartSim evStart = new StartSim(STARTTIME, evq);
+		// StartSim evStart = new StartSim(START_TIME, evq);
 		// evq.addEvent(evStart);
 		// assert evq.hasNext() == true;
 		// Event ev = evq.nextEvent();
@@ -54,7 +54,7 @@ package Main;
 		// assert evStartTest.equals(evStart);
 
 		// // StopSim test
-		// StopSim evStop = new StopSim(STOPTIME, evq);
+		// StopSim evStop = new StopSim(STOP_TIME, evq);
 		// evq.addEvent(evStop);
 		// assert evq.hasNext() == true;
 		// ev = evq.nextEvent();

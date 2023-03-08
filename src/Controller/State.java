@@ -25,7 +25,7 @@ public class State extends Observable {
 	}
 
 	/**
-	 * Notify any observers (for example View or ShopView) with the given envent
+	 * Notify any observers (for example View or ShopView) with the given event
 	 * @param ev the event to notify observers with
 	 */
 	public void notifyView(Event ev) {

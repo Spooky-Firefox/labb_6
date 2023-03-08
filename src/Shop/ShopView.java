@@ -13,6 +13,7 @@ import Controller.Event;
  * simulating a shop using this package.
  * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class ShopView extends View {
 
 	/**
@@ -88,7 +89,7 @@ public class ShopView extends View {
 			"1) Av " + state.customers.total() + " kunder handlade " +
 			state.customersPayed + " medan " + state.customersMissed + " missades.\n"
 		);
-		// Yeah no, no idea what kind of unit te is..
+		// Yeah no, no idea what kind of unit te is...
 		System.out.println(
 			"2) Total tid " + state.openCheckouts + " kassor varit lediga: " +
 			prettyDecimal(state.timeEmptyCheckouts) + " te."
@@ -105,7 +106,7 @@ public class ShopView extends View {
 	}
 
 	private void printEvent(ShopState state, ShopEvent event) {
-		// It's gonna be a big one..
+		// It's going one big printf...
 		System.out.printf("%s %s %s\t%s\t%d\t%.2f\t%d\t%d\t%d\t%d\t%.2f\t%d\t%s\n",
 			event.prettyStartTime(),event.prettyName(),event.prettyCustomer(),
 			state.prettyOpen(),state.checkoutQueue.amountFree(),state.timeEmptyCheckouts,

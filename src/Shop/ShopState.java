@@ -20,8 +20,6 @@ public class ShopState extends State {
 	final double arrivalTime; // 3
 	final double paymentTimeMin, paymentTimeMax; // 4
 	final double pickTimeMin, pickTimeMax; // 5
-	// TODO: seems unneccesary since opening time is set using the stop event???
-	// final double openTime; // 6
 	final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5

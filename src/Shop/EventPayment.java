@@ -31,7 +31,7 @@ class EventPayment extends ShopEvent {
 		state.customersShopping--;
 		state.lastPay = this.getStartTime();
 
-		// if checkoutqueue is empty, free up a counter
+		// if checkoutQueue is empty, free up a counter
 		if (state.checkoutQueue.hasNext() == false) {
 			state.checkoutQueue.makeFreeCheckout();
 			return;

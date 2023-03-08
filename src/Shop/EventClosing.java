@@ -6,6 +6,7 @@ import Controller.EventQueue;
  * EventClosing is an event that causes the shop to close for the day.
  * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class EventClosing extends ShopEvent {
 	/**
 	 * Constructor.
