@@ -24,7 +24,7 @@ class EventArrival extends ShopEvent {
 
 	/**
 	 * Overrides the inherited exec method from Event.
-	 * @param ShopState the current shop state
+	 * @param state the current shop state
 	 */
 	@Override
 	public void execute(ShopState state) {
