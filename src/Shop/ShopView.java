@@ -13,6 +13,37 @@ public class ShopView extends View {
 		super(state);
 	}
 
+	@Override
+	public void update(Observable obs, Object obj) {
+		// obs: a ShopState instance
+		// obj: ShopEvent to be executed next
+
+		// TODO: assure obs and obj really is ShopState and Event/ShopEvent???
+		ShopState state = (ShopState) obs;
+		String type = obj.getClass().toString();
+		Event event = (Event) obj;
+
+		switch (type) {
+			case "class Shop.EventStart":
+				printStart(state);
+				// using format "%9s" the event name will be padded with whitespaces
+				// 'till it's 9 letters long (and right justified).
+				System.out.println(event.prettyStartTime() + " " + event.prettyName());
+				break;
+			case "class Controller.StopSim":
+				System.out.println(event.prettyStartTime() + " " + event.prettyName());
+				printStop(state);
+				break;
+			case "class Shop.EventArrival", "class Shop.EventPick",
+				"class Shop.EventPayment", "class Shop.EventClosing":
+				printEvent(state, (ShopEvent) event);
+				break;
+			default:
+				System.out.println("Unhandled event: " + obj.getClass());
+				break;
+		}
+	}
+
 	private String prettyDecimal(double value) {
 		return String.format("%.2f", value);
 	}
@@ -66,36 +97,5 @@ public class ShopView extends View {
 			state.customersWaited, state.timeWaitingCustomers,
 			state.checkoutQueue.queuedCurrent(), state.checkoutQueue.toString()
 		);
-	}
-
-	@Override
-	public void update(Observable obs, Object obj) {
-		// obs: a ShopState instance
-		// obj: ShopEvent to be executed next
-
-		// TODO: assure obs and obj really is ShopState and Event/ShopEvent???
-		ShopState state = (ShopState) obs;
-		String type = obj.getClass().toString();
-		Event event = (Event) obj;
-
-		switch (type) {
-			case "class Shop.EventStart":
-				printStart(state);
-				// using format "%9s" the event name will be padded with whitespaces
-				// 'till it's 9 letters long (and right justified).
-				System.out.println(event.prettyStartTime() + " " + event.prettyName());
-				break;
-			case "class Controller.StopSim":
-				System.out.println(event.prettyStartTime() + " " + event.prettyName());
-				printStop(state);
-				break;
-			case "class Shop.EventArrival", "class Shop.EventPick",
-				"class Shop.EventPayment", "class Shop.EventClosing":
-				printEvent(state, (ShopEvent) event);
-				break;
-			default:
-				System.out.println("Unhandled event: " + obj.getClass());
-				break;
-		}
 	}
 }

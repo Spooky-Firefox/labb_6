@@ -53,22 +53,14 @@ public class EventQueue {
 		}
 	}
 
-	/**
-	 * get the event next in line according to when it should happen, returns null if there is none
-	 * @return the Event that should happen next, returns null if there is none
-	 */
-	public Event nextEvent() {
+	Event nextEvent() {
 		if (hasNext()) {
 			return list.remove(0);
 		}
 		return null;
 	}
 
-	/**
-	 * return if there is a next element in the queue
-	 * @return return true if there is a next element
-	 */
-	public boolean hasNext() {
+	boolean hasNext() {
 		return !list.isEmpty();
 	}
 }

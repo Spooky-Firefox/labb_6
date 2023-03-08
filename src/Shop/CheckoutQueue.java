@@ -2,7 +2,7 @@ package Shop;
 
 import java.util.ArrayList;
 
-public class CheckoutQueue {
+class CheckoutQueue {
 	// This list represents the current payment queue
 	private ArrayList<Integer> customerQueue;
 	// While this list tracks which customers HAS BEEN queueing (at least once)
@@ -10,30 +10,30 @@ public class CheckoutQueue {
 	private int maxCheckouts;
 	private int freeCheckouts;
 
-	public CheckoutQueue(int maxCheckouts) {
+	CheckoutQueue(int maxCheckouts) {
 		this.freeCheckouts = maxCheckouts;
 		this.maxCheckouts = maxCheckouts;
 		this.customerQueue = new ArrayList<>();
 		this.customerQueuedOnce = new ArrayList<Integer>();
 	}
 
-	public void useCheckout() {
+	void useCheckout() {
 		this.freeCheckouts--;
 	}
 
-	public void makeFreeCheckout() {
+	void makeFreeCheckout() {
 		this.freeCheckouts++;
 	}
 
-	public int amountFree() {
+	int amountFree() {
 		return this.freeCheckouts;
 	}
 
-	public boolean hasFree() {
+	boolean hasFree() {
 		return (this.amountFree() > 0);
 	}
 
-	public void addCustomer(int customer) {
+	void addCustomer(int customer) {
 		this.customerQueue.add(customer);
 		// Tracks which customers had to stand in line
 		if (this.customerQueuedOnce.contains(customer) == false) {
@@ -41,20 +41,20 @@ public class CheckoutQueue {
 		}
 	}
 
-	public int nextCustomer() {
+	int nextCustomer() {
 		return this.customerQueue.remove(0);
 
 	}
 
-	public boolean hasNext() {
+	boolean hasNext() {
 		return !this.customerQueue.isEmpty();
 	}
 
-	public int queuedCurrent() {
+	int queuedCurrent() {
 		return this.customerQueue.size();
 	}
 
-	public int queuedOnce() {
+	int queuedOnce() {
 		return this.customerQueuedOnce.size();
 	}
 

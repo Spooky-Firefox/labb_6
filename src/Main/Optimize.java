@@ -52,8 +52,8 @@ public class Optimize {
 				i, maxCustomers, arrivalTime, pickTimeMin, pickTimeMax, paymentTimeMin,
 				paymentTimeMax, rngSeed
 			);
-			if (state.customersMissed <= minMissedCustomers) {
-				minMissedCustomers = state.customersMissed;
+			if (state.getMissedCustomers() <= minMissedCustomers) {
+				minMissedCustomers = state.getMissedCustomers();
 				minCheckouts = i;
 			}
 		}

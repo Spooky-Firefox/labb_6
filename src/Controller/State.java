@@ -25,21 +25,6 @@ public class State extends Observable {
 	}
 
 	/**
-	 * Stops the simulation
-	 */
-	public void stop() {
-		this.stopSimulation = true;
-	}
-
-	/**
-	 * return if the simulation is stopped
-	 * @return true if the simulation is stopped
-	 */
-	public boolean isStopped() {
-		return this.stopSimulation;
-	}
-
-	/**
 	 * set the current time of the simulation
 	 * @param newTime the new time
 	 */
@@ -47,11 +32,16 @@ public class State extends Observable {
 		this.currentTime = newTime;
 	}
 
-	/**
-	 *  return the current time
-	 * @return the current time
-	 */
-	public double getTime() {
+	double getTime() {
 		return this.currentTime;
 	}
+
+	void stop() {
+		this.stopSimulation = true;
+	}
+
+	boolean isStopped() {
+		return this.stopSimulation;
+	}
+
 }

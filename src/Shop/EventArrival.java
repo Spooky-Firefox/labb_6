@@ -3,9 +3,9 @@ package Shop;
 import Controller.EventQueue;
 import Controller.State;
 
-public class EventArrival extends ShopEvent {
+class EventArrival extends ShopEvent {
 
-	public EventArrival(double startTime, EventQueue eventQueue, int customer) {
+	EventArrival(double startTime, EventQueue eventQueue, int customer) {
 		super(startTime, eventQueue);
 		this.customer = customer;
 	}

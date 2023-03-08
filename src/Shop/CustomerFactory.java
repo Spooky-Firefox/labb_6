@@ -1,14 +1,14 @@
 package Shop;
 
-public class CustomerFactory {
+class CustomerFactory {
 	private int customers = -1;
 
-	public int create() {
+	int create() {
 		this.customers++;
 		return this.customers;
 	}
 
-	public int total() {
+	int total() {
 		return this.customers;
 	}
 }

@@ -4,14 +4,14 @@ import Controller.Event;
 import Controller.EventQueue;
 import Controller.State;
 
-public abstract class ShopEvent extends Event {
+abstract class ShopEvent extends Event {
 	protected int customer;
 
-	public ShopEvent(double time, EventQueue eventQueue) {
+	ShopEvent(double time, EventQueue eventQueue) {
 		super(time, eventQueue);
 	}
 
-	public String prettyCustomer() {
+	String prettyCustomer() {
 		// Stupid rule from pg. 9, task 3.
 		if (this.customer == -1) {
 			return "---";

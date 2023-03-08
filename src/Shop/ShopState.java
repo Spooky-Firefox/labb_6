@@ -5,37 +5,37 @@ import Tools.UniformRandomStream;
 import Tools.ExponentialRandomStream;
 
 public class ShopState extends State {
-	// used for some statistics calculations
-	private double deltaTime;
-
-	// Shop parameters, from pg. 5 (comment number equals parameter on that page):
-	// - using public keyword so that
-	// - but locked to single declaration (using the "final" keyword)
-	public final int openCheckouts; // 1
-	public final int maxCustomers; // 2
-	public final double arrivalTime; // 3
-	public final double paymentTimeMin, paymentTimeMax; // 4
-	public final double pickTimeMin, pickTimeMax; // 5
+	// NOTICE:
+	// All variables has pkg visibility because the amount of getters would be crazy...!
+	//
+	// Shop parameters, from pg. 5 (comment number equals parameter on that page),
+	// locked to single declaration using the "final" keyword.
+	final int openCheckouts; // 1
+	final int maxCustomers; // 2
+	final double arrivalTime; // 3
+	final double paymentTimeMin, paymentTimeMax; // 4
+	final double pickTimeMin, pickTimeMax; // 5
 	// TODO: seems unneccesary since opening time is set using the stop event???
 	// final double openTime; // 6
-	public final long rngSeed; // 7
+	final long rngSeed; // 7
 
 	// Shop statistics, from the end of pg. 5
-	public int customersShopping = 0;
-	public int customersWaited = 0;
-	public int customersPayed = 0;
-	public int customersMissed = 0;
-	public double timeEmptyCheckouts = 0;
-	public double timeWaitingCustomers = 0;
-	public double lastPay = 0;
+	int customersShopping = 0;
+	int customersWaited = 0;
+	int customersPayed = 0;
+	int customersMissed = 0;
+	double timeEmptyCheckouts = 0;
+	double timeWaitingCustomers = 0;
+	double lastPay = 0;
 
 	// Extra, custom runtime instances
-	public boolean open = true;
-	public CustomerFactory customers = new CustomerFactory();
-	public CheckoutQueue checkoutQueue;
-	public ExponentialRandomStream arrivalRNG;
-	public UniformRandomStream pickRNG;
-	public UniformRandomStream paymentRNG;
+	boolean open = true;
+	CustomerFactory customers = new CustomerFactory();
+	CheckoutQueue checkoutQueue;
+	private double deltaTime; // used for some statistics calculations
+	private ExponentialRandomStream arrivalRNG;
+	private UniformRandomStream pickRNG;
+	private UniformRandomStream paymentRNG;
 
 	public ShopState(
 			int openCheckouts, int maxCustomers, double arrivalTime, double pickTimeMin,
@@ -56,7 +56,37 @@ public class ShopState extends State {
 
 	}
 
-	public void updateStatistics(){
+	@Override
+	public void setTime(double newTime) {
+		this.deltaTime = newTime - this.currentTime;
+		super.setTime(newTime);
+	}
+
+	public int getMissedCustomers() {
+		return this.customersMissed;
+	}
+
+	String prettyOpen() {
+		if (this.open){
+			return "O";
+		} else {
+			return "S";
+		}
+	}
+
+	double newArrivalTime() {
+		return this.arrivalRNG.next();
+	}
+
+	double newPickTime() {
+		return this.pickRNG.next();
+	}
+
+	double newPaymentTime() {
+		return this.paymentRNG.next();
+	}
+
+	void updateStatistics(){
 		if(this.open || this.customersShopping > 0) {
 			// sum of total time in checkout queue
 			this.timeWaitingCustomers = this.timeWaitingCustomers +
@@ -67,29 +97,4 @@ public class ShopState extends State {
 		}
 	}
 
-	@Override
-	public void setTime(double newTime) {
-		this.deltaTime = newTime - this.currentTime;
-		super.setTime(newTime);
-	}
-
-	public String prettyOpen() {
-		if (this.open){
-			return "O";
-		} else {
-			return "S";
-		}
-	}
-
-	public double newArrivalTime() {
-		return this.arrivalRNG.next();
-	}
-
-	public double newPickTime() {
-		return this.pickRNG.next();
-	}
-
-	public double newPaymentTime() {
-		return this.paymentRNG.next();
-	}
 }

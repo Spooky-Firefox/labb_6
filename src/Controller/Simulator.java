@@ -1,6 +1,5 @@
 package Controller;
 
-
 public class Simulator {
 	private State state;
 	private EventQueue events;

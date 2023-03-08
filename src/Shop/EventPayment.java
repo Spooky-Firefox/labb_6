@@ -3,8 +3,8 @@ package Shop;
 import Controller.EventQueue;
 import Controller.State;
 
-public class EventPayment extends ShopEvent {
-	public EventPayment(double startTime, EventQueue eventQueue, int customer) {
+class EventPayment extends ShopEvent {
+	EventPayment(double startTime, EventQueue eventQueue, int customer) {
 		super(startTime, eventQueue);
 		this.customer = customer;
 	}
