@@ -54,7 +54,7 @@ public class EventQueue {
 	}
 
 	/**
-	 * return the next element in the que, tho one that should happen next
+	 * return the next element in the queue, the one that should happen next
 	 * @return the next element
 	 */
 	Event nextEvent() {
