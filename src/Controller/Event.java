@@ -3,6 +3,7 @@ package Controller;
 /**
  * Event is an abstract class that all events should inherit from, to be run inside
  * the simulator loop.
+ * may change the given sate, and/or add new events to EventQueue
  * @author Kalle Hedberg, David Malmblad, Olle Ronstad, Alexander Svensson.
  */
 public abstract class Event {
@@ -11,6 +12,8 @@ public abstract class Event {
 
 	/**
 	 * Constructor.
+	 * Creates an event scheduled to execute at time, with a reference to queue so that
+	 * new events can be added during execution.
 	 * @param time time when the event will be run
 	 * @param eventQueue an instance of EventQueue which tracks all events
 	 */
@@ -39,7 +42,7 @@ public abstract class Event {
 
 	/**
 	 * Returns the name of the event.
-	 * @return name of event
+	 * @return formatted name of event
 	 */
 	public String prettyName() {
 		// Left padd the string until it's 9 letters long
@@ -48,7 +51,7 @@ public abstract class Event {
 	}
 
 	/**
-	 * Returns the EventQueue this event is part of.
+	 * Returns the EventQueue this event is part of, used for adding new events.
 	 * @return instance of EventQueue
 	 */
 	public EventQueue getQueue() {
@@ -59,6 +62,7 @@ public abstract class Event {
 	 * Method all other events should override with their own actions to be done when
 	 * the event is being run. Don't forget to call this method beforehand,
 	 * using super.execute().
+	 * May update state and add new events.
 	 * @param state instance of State
 	 */
 	public void execute(State state) {
