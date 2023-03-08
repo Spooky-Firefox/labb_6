@@ -11,7 +11,7 @@ public class EventQueue {
 	State state;
 
 	/**
-	 * Creates the EventQueue object
+	 * Creates the EventQueue object, where the state provides the current time
 	 * @param state the accompanying state
 	 */
 	public EventQueue(State state){
@@ -53,6 +53,10 @@ public class EventQueue {
 		}
 	}
 
+	/**
+	 * return the next element in the que, tho one that should happen next
+	 * @return the next element
+	 */
 	Event nextEvent() {
 		if (hasNext()) {
 			return list.remove(0);
@@ -60,6 +64,10 @@ public class EventQueue {
 		return null;
 	}
 
+	/**
+	 * if there is a next element in the queue
+	 * @return return true if there are a next element in queue
+	 */
 	boolean hasNext() {
 		return !list.isEmpty();
 	}
