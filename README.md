@@ -5,7 +5,7 @@ En butiks simulator + optimizer.
 
 ## Status
 
-Under utveckling.
+Färdig, redovisad, godkänd.
 
 ## UML
 
